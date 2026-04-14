@@ -82,90 +82,53 @@
               </button>
             </div>
             <div class="code-sample-shell is-collapsed" id="hello-svg-sample-wrap">
-              <pre class="code-preview"><code class="language-csharp"><span class="token-comment">// Draw the orb</span>
-<span class="token-keyword">using</span> <span class="token-keyword">var</span> orb = <span class="token-keyword">new</span> <span class="token-type">SKPaint</span>
-{
-    IsAntialias = <span class="token-keyword">true</span>,
+              <pre class="code-preview"><code class="language-csharp">canvas.DrawCircle(<span class="token-number">200</span>, <span class="token-number">150</span>, <span class="token-number">70</span>, <span class="token-keyword">new</span> <span class="token-type">SKPaint</span> {
     Shader = <span class="token-type">SKShader</span>.CreateLinearGradient(
-        <span class="token-keyword">new</span> <span class="token-type">SKPoint</span>(<span class="token-number">96</span>, <span class="token-number">32</span>), <span class="token-keyword">new</span> <span class="token-type">SKPoint</span>(<span class="token-number">224</span>, <span class="token-number">158</span>),
-        [<span class="token-type">SKColor</span>.Parse(<span class="token-string">"#60A5FA"</span>), <span class="token-type">SKColor</span>.Parse(<span class="token-string">"#8B5CF6"</span>)], <span class="token-keyword">null</span>, <span class="token-type">SKShaderTileMode</span>.Clamp)
-};
-canvas.DrawCircle(<span class="token-number">160</span>, <span class="token-number">95</span>, <span class="token-number">64</span>, orb);
+        <span class="token-keyword">new</span> <span class="token-type">SKPoint</span>(<span class="token-number">140</span>, <span class="token-number">80</span>), <span class="token-keyword">new</span> <span class="token-type">SKPoint</span>(<span class="token-number">260</span>, <span class="token-number">220</span>),
+        [<span class="token-number">0xFF60A5FA</span>, <span class="token-number">0xFF8B5CF6</span>], <span class="token-type">SKShaderTileMode</span>.Clamp),
+    IsAntialias = <span class="token-keyword">true</span>
+});
 
-<span class="token-comment">// Draw the outer ring</span>
-<span class="token-keyword">using</span> <span class="token-keyword">var</span> ring = <span class="token-keyword">new</span> <span class="token-type">SKPaint</span> { IsAntialias = <span class="token-keyword">true</span>, Color = <span class="token-type">SKColor</span>.Parse(<span class="token-string">"#94A3B8"</span>).WithAlpha(<span class="token-number">64</span>), Style = <span class="token-type">SKPaintStyle</span>.Stroke, StrokeWidth = <span class="token-number">2</span> };
-canvas.DrawCircle(<span class="token-number">160</span>, <span class="token-number">95</span>, <span class="token-number">88</span>, ring);
-
-<span class="token-comment">// Draw the accent curve</span>
-<span class="token-keyword">using</span> <span class="token-keyword">var</span> line = <span class="token-keyword">new</span> <span class="token-type">SKPaint</span> { IsAntialias = <span class="token-keyword">true</span>, Color = <span class="token-type">SKColor</span>.Parse(<span class="token-string">"#1D4ED8"</span>), StrokeWidth = <span class="token-number">8</span>, Style = <span class="token-type">SKPaintStyle</span>.Stroke, StrokeCap = <span class="token-type">SKStrokeCap</span>.Round };
 <span class="token-keyword">using</span> <span class="token-keyword">var</span> path = <span class="token-keyword">new</span> <span class="token-type">SKPath</span>();
-path.MoveTo(<span class="token-number">72</span>, <span class="token-number">136</span>);
-path.CubicTo(<span class="token-number">102</span>, <span class="token-number">104</span>, <span class="token-number">130</span>, <span class="token-number">88</span>, <span class="token-number">160</span>, <span class="token-number">88</span>);
-path.CubicTo(<span class="token-number">190</span>, <span class="token-number">88</span>, <span class="token-number">218</span>, <span class="token-number">104</span>, <span class="token-number">248</span>, <span class="token-number">136</span>);
-canvas.DrawPath(path, line);
-
-<span class="token-comment">// Draw the accent dot</span>
-<span class="token-keyword">using</span> <span class="token-keyword">var</span> dot = <span class="token-keyword">new</span> <span class="token-type">SKPaint</span> { Color = <span class="token-type">SKColor</span>.Parse(<span class="token-string">"#F97316"</span>), IsAntialias = <span class="token-keyword">true</span> };
-canvas.DrawCircle(<span class="token-number">222</span>, <span class="token-number">62</span>, <span class="token-number">12</span>, dot);</code></pre>
+path.MoveTo(<span class="token-number">110</span>, <span class="token-number">190</span>);
+path.CubicTo(<span class="token-number">150</span>, <span class="token-number">140</span>, <span class="token-number">200</span>, <span class="token-number">210</span>, <span class="token-number">290</span>, <span class="token-number">170</span>);
+canvas.DrawPath(path, <span class="token-keyword">new</span> <span class="token-type">SKPaint</span> {
+    Color = <span class="token-number">0xFF1D4ED8</span>,
+    StrokeWidth = <span class="token-number">6</span>,
+    Style = <span class="token-type">SKPaintStyle</span>.Stroke,
+    StrokeCap = <span class="token-type">SKStrokeCap</span>.Round,
+    IsAntialias = <span class="token-keyword">true</span>
+});</code></pre>
               <pre class="code-full"><code class="language-csharp"><span class="token-comment">#!/usr/bin/env dotnet</span>
 <span class="token-comment">#:property PublishAot=false</span>
 <span class="token-comment">#:package SkiaSharp@*</span>
 
 <span class="token-keyword">using</span> SkiaSharp;
 
+<span class="token-comment">// Create an SVG canvas and save to a file</span>
 <span class="token-keyword">var</span> bounds = <span class="token-keyword">new</span> <span class="token-type">SKRect</span>(<span class="token-number">0</span>, <span class="token-number">0</span>, <span class="token-number">400</span>, <span class="token-number">300</span>);
 <span class="token-keyword">using</span> <span class="token-keyword">var</span> stream = File.Create(<span class="token-string">"hello-skiasharp.svg"</span>);
 <span class="token-keyword">using</span> <span class="token-keyword">var</span> canvas = <span class="token-type">SKSvgCanvas</span>.Create(bounds, stream);
 
-<span class="token-comment">// Draw the background</span>
-<span class="token-keyword">using</span> <span class="token-keyword">var</span> bg = <span class="token-keyword">new</span> <span class="token-type">SKPaint</span>
-{
-    IsAntialias = <span class="token-keyword">true</span>,
+<span class="token-comment">// Orb</span>
+canvas.DrawCircle(<span class="token-number">200</span>, <span class="token-number">150</span>, <span class="token-number">70</span>, <span class="token-keyword">new</span> <span class="token-type">SKPaint</span> {
     Shader = <span class="token-type">SKShader</span>.CreateLinearGradient(
-        <span class="token-keyword">new</span> <span class="token-type">SKPoint</span>(<span class="token-number">0</span>, <span class="token-number">0</span>), <span class="token-keyword">new</span> <span class="token-type">SKPoint</span>(<span class="token-number">400</span>, <span class="token-number">300</span>),
-        [<span class="token-type">SKColor</span>.Parse(<span class="token-string">"#F0F4FF"</span>), <span class="token-type">SKColor</span>.Parse(<span class="token-string">"#F5F0FF"</span>)], <span class="token-keyword">null</span>, <span class="token-type">SKShaderTileMode</span>.Clamp)
-};
-canvas.DrawRoundRect(bounds, <span class="token-number">18</span>, <span class="token-number">18</span>, bg);
+        <span class="token-keyword">new</span> <span class="token-type">SKPoint</span>(<span class="token-number">140</span>, <span class="token-number">80</span>), <span class="token-keyword">new</span> <span class="token-type">SKPoint</span>(<span class="token-number">260</span>, <span class="token-number">220</span>),
+        [<span class="token-number">0xFF60A5FA</span>, <span class="token-number">0xFF8B5CF6</span>], <span class="token-type">SKShaderTileMode</span>.Clamp),
+    IsAntialias = <span class="token-keyword">true</span>
+});
 
-<span class="token-comment">// Draw the orb</span>
-<span class="token-keyword">using</span> <span class="token-keyword">var</span> orb = <span class="token-keyword">new</span> <span class="token-type">SKPaint</span>
-{
-    IsAntialias = <span class="token-keyword">true</span>,
-    Shader = <span class="token-type">SKShader</span>.CreateLinearGradient(
-        <span class="token-keyword">new</span> <span class="token-type">SKPoint</span>(<span class="token-number">118</span>, <span class="token-number">54</span>), <span class="token-keyword">new</span> <span class="token-type">SKPoint</span>(<span class="token-number">282</span>, <span class="token-number">246</span>),
-        [<span class="token-type">SKColor</span>.Parse(<span class="token-string">"#60A5FA"</span>), <span class="token-type">SKColor</span>.Parse(<span class="token-string">"#8B5CF6"</span>)], <span class="token-keyword">null</span>, <span class="token-type">SKShaderTileMode</span>.Clamp)
-};
-canvas.DrawCircle(<span class="token-number">200</span>, <span class="token-number">150</span>, <span class="token-number">82</span>, orb);
-
-<span class="token-comment">// Draw the outer ring</span>
-<span class="token-keyword">using</span> <span class="token-keyword">var</span> ring = <span class="token-keyword">new</span> <span class="token-type">SKPaint</span>
-{
-    IsAntialias = <span class="token-keyword">true</span>,
-    Color = <span class="token-type">SKColor</span>.Parse(<span class="token-string">"#94A3B8"</span>).WithAlpha(<span class="token-number">64</span>),
-    Style = <span class="token-type">SKPaintStyle</span>.Stroke,
-    StrokeWidth = <span class="token-number">2</span>
-};
-canvas.DrawCircle(<span class="token-number">200</span>, <span class="token-number">150</span>, <span class="token-number">112</span>, ring);
-
-<span class="token-comment">// Draw the accent curve</span>
-<span class="token-keyword">using</span> <span class="token-keyword">var</span> line = <span class="token-keyword">new</span> <span class="token-type">SKPaint</span>
-{
-    IsAntialias = <span class="token-keyword">true</span>,
-    Color = <span class="token-type">SKColor</span>.Parse(<span class="token-string">"#1D4ED8"</span>),
-    StrokeWidth = <span class="token-number">8</span>,
-    Style = <span class="token-type">SKPaintStyle</span>.Stroke,
-    StrokeCap = <span class="token-type">SKStrokeCap</span>.Round
-};
-
+<span class="token-comment">// Curve</span>
 <span class="token-keyword">using</span> <span class="token-keyword">var</span> path = <span class="token-keyword">new</span> <span class="token-type">SKPath</span>();
-path.MoveTo(<span class="token-number">90</span>, <span class="token-number">214</span>);
-path.CubicTo(<span class="token-number">128</span>, <span class="token-number">174</span>, <span class="token-number">164</span>, <span class="token-number">154</span>, <span class="token-number">200</span>, <span class="token-number">154</span>);
-path.CubicTo(<span class="token-number">236</span>, <span class="token-number">154</span>, <span class="token-number">272</span>, <span class="token-number">174</span>, <span class="token-number">310</span>, <span class="token-number">214</span>);
-canvas.DrawPath(path, line);
-
-<span class="token-comment">// Draw the accent dot</span>
-<span class="token-keyword">using</span> <span class="token-keyword">var</span> dot = <span class="token-keyword">new</span> <span class="token-type">SKPaint</span> { Color = <span class="token-type">SKColor</span>.Parse(<span class="token-string">"#F97316"</span>), IsAntialias = <span class="token-keyword">true</span> };
-canvas.DrawCircle(<span class="token-number">282</span>, <span class="token-number">100</span>, <span class="token-number">12</span>, dot);</code></pre>
+path.MoveTo(<span class="token-number">110</span>, <span class="token-number">190</span>);
+path.CubicTo(<span class="token-number">150</span>, <span class="token-number">140</span>, <span class="token-number">200</span>, <span class="token-number">210</span>, <span class="token-number">290</span>, <span class="token-number">170</span>);
+canvas.DrawPath(path, <span class="token-keyword">new</span> <span class="token-type">SKPaint</span> {
+    Color = <span class="token-number">0xFF1D4ED8</span>,
+    StrokeWidth = <span class="token-number">6</span>,
+    Style = <span class="token-type">SKPaintStyle</span>.Stroke,
+    StrokeCap = <span class="token-type">SKStrokeCap</span>.Round,
+    IsAntialias = <span class="token-keyword">true</span>
+});</code></pre>
               <div class="code-sample-fade" aria-hidden="true"></div>
               <button class="expand-code-btn" type="button" data-expand-target="hello-svg-sample-wrap" aria-expanded="false">See full code</button>
             </div>
@@ -175,110 +138,48 @@ canvas.DrawCircle(<span class="token-number">282</span>, <span class="token-numb
 
 using SkiaSharp;
 
+// Create an SVG canvas and save to a file
 var bounds = new SKRect(0, 0, 400, 300);
 using var stream = File.Create("hello-skiasharp.svg");
 using var canvas = SKSvgCanvas.Create(bounds, stream);
 
-// Draw the background
-using var bg = new SKPaint
-{
-    IsAntialias = true,
+// Orb
+canvas.DrawCircle(200, 150, 70, new SKPaint {
     Shader = SKShader.CreateLinearGradient(
-        new SKPoint(0, 0), new SKPoint(400, 300),
-        [SKColor.Parse("#F0F4FF"), SKColor.Parse("#F5F0FF")], null, SKShaderTileMode.Clamp)
-};
-canvas.DrawRoundRect(bounds, 18, 18, bg);
+        new SKPoint(140, 80), new SKPoint(260, 220),
+        [0xFF60A5FA, 0xFF8B5CF6], SKShaderTileMode.Clamp),
+    IsAntialias = true
+});
 
-// Draw the orb
-using var orb = new SKPaint
-{
-    IsAntialias = true,
-    Shader = SKShader.CreateLinearGradient(
-        new SKPoint(118, 54), new SKPoint(282, 246),
-        [SKColor.Parse("#60A5FA"), SKColor.Parse("#8B5CF6")], null, SKShaderTileMode.Clamp)
-};
-canvas.DrawCircle(200, 150, 82, orb);
-
-// Draw the outer ring
-using var ring = new SKPaint
-{
-    IsAntialias = true,
-    Color = SKColor.Parse("#94A3B8").WithAlpha(64),
-    Style = SKPaintStyle.Stroke,
-    StrokeWidth = 2
-};
-canvas.DrawCircle(200, 150, 112, ring);
-
-// Draw the accent curve
-using var line = new SKPaint
-{
-    IsAntialias = true,
-    Color = SKColor.Parse("#1D4ED8"),
-    StrokeWidth = 8,
-    Style = SKPaintStyle.Stroke,
-    StrokeCap = SKStrokeCap.Round
-};
-using var dot = new SKPaint { Color = SKColor.Parse("#F97316"), IsAntialias = true };
-
+// Curve
 using var path = new SKPath();
-path.MoveTo(90, 214);
-path.CubicTo(128, 174, 164, 154, 200, 154);
-path.CubicTo(236, 154, 272, 174, 310, 214);
-
-canvas.DrawPath(path, line);
-
-// Draw the accent dot
-canvas.DrawCircle(282, 100, 12, dot);</script>
+path.MoveTo(110, 190);
+path.CubicTo(150, 140, 200, 210, 290, 170);
+canvas.DrawPath(path, new SKPaint {
+    Color = 0xFF1D4ED8,
+    StrokeWidth = 6,
+    Style = SKPaintStyle.Stroke,
+    StrokeCap = SKStrokeCap.Round,
+    IsAntialias = true
+});</script>
           </div>
 
           <div class="render-preview">
             <div class="render-art">
-              <svg viewBox="0 0 400 300" aria-hidden="true" focusable="false">
-                <defs>
-                  <linearGradient id="hello-orb" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#60a5fa" />
-                    <stop offset="100%" stop-color="#8b5cf6" />
-                  </linearGradient>
-                  <linearGradient id="hello-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#f0f4ff" />
-                    <stop offset="100%" stop-color="#f5f0ff" />
-                  </linearGradient>
-                </defs>
-                <rect x="0" y="0" width="400" height="300" rx="18" fill="url(#hello-bg)" />
-                <circle cx="200" cy="150" r="82" fill="url(#hello-orb)" opacity="0.95" />
-                <path d="M90 214c38-40 74-60 110-60s72 20 110 60" fill="none" stroke="#1d4ed8" stroke-width="8" stroke-linecap="round" opacity="0.7" />
-                <circle cx="282" cy="100" r="12" fill="#f97316" />
-              </svg>
+              <div class="render-art-inner">
+                <svg viewBox="0 0 400 300" aria-hidden="true" focusable="false">
+                  <defs>
+                    <linearGradient id="gradient_0" gradientUnits="userSpaceOnUse" x1="140" y1="80" x2="260" y2="220">
+                      <stop offset="0" stop-color="#60A5FA" />
+                      <stop offset="1" stop-color="#8B5CF6" />
+                    </linearGradient>
+                  </defs>
+                  <ellipse fill="url(#gradient_0)" cx="200" cy="150" rx="70" ry="70" />
+                  <path fill="none" stroke="#1D4ED8" stroke-width="6" stroke-linecap="round" stroke-miterlimit="4" d="M110 190C150 140 200 210 290 170" />
+                </svg>
+              </div>
             </div>
-          </div>
-        </div>
-        <blockquote class="showcase-callout">Copy, save as <code>HelloSvg.cs</code>, then run <code>dotnet HelloSvg.cs</code> to generate the SVG.</blockquote>
-      </div>
-    </section>
-
-    <section class="features-section">
-      <div class="container">
-        <p class="section-kicker">Why teams choose it</p>
-        <h2 class="section-title">Why SkiaSharp?</h2>
-        <p class="section-intro">
-          A fast, familiar graphics stack for .NET apps on desktop, mobile, server, and web.
-        </p>
-        <div class="features-grid">
-          <div class="feature">
-            <h3>Cross-Platform</h3>
-            <p>Windows, macOS, Linux, iOS, Android, WebAssembly — one API, every platform.</p>
-          </div>
-          <div class="feature">
-            <h3>Hardware Accelerated</h3>
-            <p>Powered by Google's Skia engine, the same graphics library behind Chrome and Android.</p>
-          </div>
-          <div class="feature">
-            <h3>.NET Native</h3>
-            <p>First-class C# API with idiomatic patterns. Works with .NET MAUI, Blazor, Console apps, and more.</p>
-          </div>
-          <div class="feature">
-            <h3>Rich Feature Set</h3>
-            <p>Vector drawing, text rendering, image processing, shaders, blend modes, SVG path data, and beyond.</p>
+            <blockquote class="showcase-callout">Copy &amp; save as <code>HelloSvg.cs</code>, then run <code>dotnet HelloSvg.cs</code></blockquote>
           </div>
         </div>
       </div>
@@ -311,45 +212,106 @@ canvas.DrawCircle(282, 100, 12, dot);</script>
             <p class="card-desc">This section is ready to grow as we add more interactive gallery experiences over time.</p>
           </div>
         </div>
+
+        <h3 class="subsection-title">Things you can explore</h3>
+        <div class="use-case-grid">
+          <div class="use-case-card">
+            <h3>Image Processing</h3>
+            <p>Decode, filter, blur, and transform images with composable drawing primitives.</p>
+          </div>
+          <div class="use-case-card">
+            <h3>Text &amp; Typography</h3>
+            <p>Render crisp text, shape multiple scripts, and lay out labels with precision.</p>
+          </div>
+          <div class="use-case-card">
+            <h3>Shaders &amp; Effects</h3>
+            <p>Build gradients, blend modes, filters, and runtime effects for richer visuals.</p>
+          </div>
+          <div class="use-case-card">
+            <h3>PDF &amp; Export</h3>
+            <p>Generate documents, export graphics, and render visuals outside of a traditional UI.</p>
+          </div>
+          <div class="use-case-card">
+            <h3>Paths &amp; Curves</h3>
+            <p>Build Bézier curves, arcs, and complex vector paths with shape operations and fill rules.</p>
+          </div>
+          <div class="use-case-card">
+            <h3>Transforms &amp; Animation</h3>
+            <p>Rotate, scale, skew, and animate graphics with matrices and time-based updates.</p>
+          </div>
+          <div class="use-case-card">
+            <h3>Clipping &amp; Masking</h3>
+            <p>Restrict rendering to custom shapes, create masks with paths and regions for special effects.</p>
+          </div>
+          <div class="use-case-card">
+            <h3>Geometry &amp; Mesh</h3>
+            <p>Render triangle meshes, rounded rectangles, and vertex-colored graphics with precision.</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="platforms-section">
+    <section class="features-section section-alt">
       <div class="container">
-        <p class="section-kicker">Build anywhere</p>
-        <h2 class="section-title">One graphics API across the .NET stack</h2>
+        <p class="section-kicker">Why teams choose it</p>
+        <h2 class="section-title">Why SkiaSharp?</h2>
         <p class="section-intro">
-          Start in the browser, then carry the same drawing model into apps, tools, and export workflows.
+          A fast, familiar graphics stack for .NET apps on desktop, mobile, server, and web.
         </p>
 
-        <div class="platform-pill-row" aria-label="Supported platforms and app types">
-          <span class="platform-pill">.NET MAUI</span>
-          <span class="platform-pill">Blazor</span>
+        <div class="platform-pill-row" aria-label="Supported operating systems">
           <span class="platform-pill">Android</span>
           <span class="platform-pill">iOS</span>
-          <span class="platform-pill">macOS</span>
-          <span class="platform-pill">Windows</span>
           <span class="platform-pill">Linux</span>
-          <span class="platform-pill">Console</span>
+          <span class="platform-pill">Mac Catalyst</span>
+          <span class="platform-pill">macOS</span>
+          <span class="platform-pill">Tizen</span>
+          <span class="platform-pill">tvOS</span>
+          <span class="platform-pill">WebAssembly</span>
+          <span class="platform-pill">Windows</span>
         </div>
 
-        <div class="use-case-grid">
-          <a href="gallery/" class="use-case-card">
-            <h3>Image Processing</h3>
-            <p>Decode, filter, blur, and transform images with composable drawing primitives.</p>
-          </a>
-          <a href="gallery/" class="use-case-card">
-            <h3>Text &amp; Typography</h3>
-            <p>Render crisp text, shape multiple scripts, and lay out labels with precision.</p>
-          </a>
-          <a href="gallery/" class="use-case-card">
-            <h3>Shaders &amp; Effects</h3>
-            <p>Build gradients, blend modes, filters, and runtime effects for richer visuals.</p>
-          </a>
-          <a href="gallery/" class="use-case-card">
-            <h3>PDF &amp; Export</h3>
-            <p>Generate documents, export graphics, and render visuals outside of a traditional UI.</p>
-          </a>
+        <div class="platform-pill-row" aria-label="Supported frameworks and app types">
+          <span class="platform-pill">.NET MAUI</span>
+          <span class="platform-pill">Blazor</span>
+          <span class="platform-pill">Console</span>
+          <span class="platform-pill">Uno Platform</span>
+          <span class="platform-pill">WinUI 3</span>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature">
+            <h3>Cross-Platform</h3>
+            <p>Windows, macOS, Linux, iOS, Android, WebAssembly — one API, every platform.</p>
+          </div>
+          <div class="feature">
+            <h3>Hardware Accelerated</h3>
+            <p>Powered by Google's Skia engine, the same graphics library behind Chrome and Android.</p>
+          </div>
+          <div class="feature">
+            <h3>.NET Native</h3>
+            <p>First-class C# API with idiomatic patterns. Works with .NET MAUI, Blazor, Console apps, and more.</p>
+          </div>
+          <div class="feature">
+            <h3>Rich Feature Set</h3>
+            <p>Vector drawing, text rendering, image processing, shaders, blend modes, SVG path data, and beyond.</p>
+          </div>
+          <div class="feature">
+            <h3>Open Source</h3>
+            <p>MIT licensed and community-driven. Contribute, fork, or build on top of a proven foundation.</p>
+          </div>
+          <div class="feature">
+            <h3>GPU &amp; CPU Rendering</h3>
+            <p>Choose software rasterization or GPU backends like OpenGL, Metal, and Vulkan per target.</p>
+          </div>
+          <div class="feature">
+            <h3>Pixel-Perfect Output</h3>
+            <p>Consistent rendering across every platform — what you draw on one device looks the same on all.</p>
+          </div>
+          <div class="feature">
+            <h3>NuGet-First</h3>
+            <p>Drop in via NuGet with native binaries auto-resolved per platform. No manual setup required.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -397,7 +359,7 @@ canvas.DrawCircle(282, 100, 12, dot);</script>
     <div class="container footer-inner">
       <p>
         SkiaSharp is licensed under the <a href="https://github.com/mono/SkiaSharp/blob/main/LICENSE.md" target="_blank" rel="noopener">MIT License</a>.
-        Built with ❤️ by the .NET community.<br><small>PR #3668 · mattleibow/refresh-docs-homepage · 52326ae</small>
+        Built with ❤️ by the .NET community.<br><small>PR #3668 · mattleibow/refresh-docs-homepage · 77c1afe</small>
       </p>
       <div class="footer-links">
         <a href="https://github.com/mono/SkiaSharp" target="_blank" rel="noopener">GitHub</a>
