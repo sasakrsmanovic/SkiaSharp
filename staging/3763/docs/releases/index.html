@@ -88,49 +88,46 @@
 <h1 id="release-notes">Release Notes</h1>
 
 <p>Release notes for all SkiaSharp versions. Each page includes the stable release and all associated preview releases.</p>
-<h2 id="whats-coming-next">What's Coming Next</h2>
-<!-- UNRELEASED_BEGIN -->
-<p>Typography gets a major upgrade with full variable font support and color font palettes, while the core API gains finer sampling control for surface drawing. Community contributor <a href="https://github.com/ramezgerges">@ramezgerges</a> has been instrumental in driving these font and platform improvements.</p>
-<h3 id="-core-api">🎨 Core API</h3>
+<h3 id="skiasharp-4x">SkiaSharp 4.x</h3>
 <ul>
-<li><strong>SKSamplingOptions for surface drawing</strong> — <code>SKSurface.Draw</code> and <code>SKCanvas.DrawSurface</code> now accept <code>SKSamplingOptions</code> for finer control over image sampling quality. ❤️ (<a href="https://github.com/mono/SkiaSharp/pull/3491">#3491</a>)</li>
-</ul>
-<h3 id="-text--fonts">📦 Text &amp; Fonts</h3>
+<li><strong>Version 4.133.x</strong>
 <ul>
-<li><strong>Variable font support</strong> — Full variable font axis support including weight, width, slant, and custom axes. ❤️ @ramezgerges (<a href="https://github.com/mono/SkiaSharp/pull/3703">#3703</a>)</li>
-<li><strong>Color font palette support</strong> — Added color font (COLR/CPAL) palette selection and improved variable font robustness. (<a href="https://github.com/mono/SkiaSharp/pull/3742">#3742</a>)</li>
-<li><strong>Default typeface resolution fix</strong> — Moved default-typeface resolution to the managed layer, fixing incorrect fallback behavior. ❤️ @ramezgerges (<a href="https://github.com/mono/SkiaSharp/pull/3730">#3730</a>)</li>
-<li><strong>Legacy typeface creation</strong> — Bumped Skia to include <code>sk_fontmgr_legacy_create_typeface</code> for improved font manager support. (<a href="https://github.com/mono/SkiaSharp/pull/3744">#3744</a>)</li>
+<li><a href="4.133.0.html">Version 4.133.0 (Upcoming)</a></li>
 </ul>
-<h3 id="-linux">🐧 Linux</h3>
-<ul>
-<li><strong>Debian 13 Docker build fix</strong> — Fixed Docker build for non-loong64/riscv64 architectures on Debian 13. (<a href="https://github.com/mono/SkiaSharp/pull/3747">#3747</a>)</li>
+</li>
 </ul>
-<h3 id="-webassembly">🌐 WebAssembly</h3>
-<ul>
-<li><strong>Uno Platform WebAssembly gallery</strong> — New sample project demonstrating SkiaSharp with Uno Platform on WebAssembly. ❤️ @ramezgerges (<a href="https://github.com/mono/SkiaSharp/pull/3758">#3758</a>)</li>
-</ul>
-<h3 id="-general">📦 General</h3>
-<ul>
-<li><strong>Uno Platform sample update</strong> — Updated existing Uno Platform sample project. ❤️ @ramezgerges (<a href="https://github.com/mono/SkiaSharp/pull/3666">#3666</a>)</li>
-<li><strong>Threading test fix</strong> — Fixed x86 .NET Framework threading test OOM failures. (<a href="https://github.com/mono/SkiaSharp/pull/3674">#3674</a>)</li>
-</ul>
-<p>Plus several CI, documentation, and tooling improvements.</p>
-<!-- UNRELEASED_END -->
-<h2 id="all-versions">All Versions</h2>
 <h3 id="skiasharp-3x">SkiaSharp 3.x</h3>
+<ul>
+<li><strong>Version 3.119.x</strong>
 <ul>
 <li><a href="3.119.4.html">Version 3.119.4</a></li>
 <li><a href="3.119.3.html">Version 3.119.3</a></li>
 <li><a href="3.119.2.html">Version 3.119.2</a></li>
 <li><a href="3.119.1.html">Version 3.119.1</a></li>
 <li><a href="3.119.0.html">Version 3.119.0</a></li>
+</ul>
+</li>
+<li><strong>Version 3.118.x</strong>
+<ul>
 <li><a href="3.118.0.html">Version 3.118.0</a></li>
+</ul>
+</li>
+<li><strong>Version 3.116.x</strong>
+<ul>
 <li><a href="3.116.1.html">Version 3.116.1</a></li>
 <li><a href="3.116.0.html">Version 3.116.0</a></li>
+</ul>
+</li>
+<li><strong>Version 3.0.x</strong>
+<ul>
 <li><a href="3.0.0.html">Version 3.0.0</a></li>
 </ul>
-<h3 id="skiasharp-2x">SkiaSharp 2.x</h3>
+</li>
+</ul>
+<details>
+<summary><h3>SkiaSharp 2.x (Obsolete)</h3></summary>
+<ul>
+<li><strong>Version 2.88.x</strong>
 <ul>
 <li><a href="2.88.9.html">Version 2.88.9</a></li>
 <li><a href="2.88.8.html">Version 2.88.8</a></li>
@@ -142,13 +139,23 @@
 <li><a href="2.88.2.html">Version 2.88.2</a></li>
 <li><a href="2.88.1.html">Version 2.88.1</a></li>
 <li><a href="2.88.0.html">Version 2.88.0</a></li>
+</ul>
+</li>
+<li><strong>Version 2.80.x</strong>
+<ul>
 <li><a href="2.80.4.html">Version 2.80.4</a></li>
 <li><a href="2.80.3.html">Version 2.80.3</a></li>
 <li><a href="2.80.2.html">Version 2.80.2</a></li>
 <li><a href="2.80.1.html">Version 2.80.1</a></li>
 <li><a href="2.80.0.html">Version 2.80.0</a></li>
 </ul>
-<h3 id="skiasharp-1x">SkiaSharp 1.x</h3>
+</li>
+</ul>
+</details>
+<details>
+<summary><h3>SkiaSharp 1.x (Obsolete)</h3></summary>
+<ul>
+<li><strong>Version 1.68.x</strong>
 <ul>
 <li><a href="1.68.3.html">Version 1.68.3</a></li>
 <li><a href="1.68.2.1.html">Version 1.68.2.1</a></li>
@@ -156,32 +163,68 @@
 <li><a href="1.68.1.1.html">Version 1.68.1.1</a></li>
 <li><a href="1.68.1.html">Version 1.68.1</a></li>
 <li><a href="1.68.0.html">Version 1.68.0</a></li>
+</ul>
+</li>
+<li><strong>Version 1.60.x</strong>
+<ul>
 <li><a href="1.60.3.html">Version 1.60.3</a></li>
 <li><a href="1.60.2.html">Version 1.60.2</a></li>
 <li><a href="1.60.1.html">Version 1.60.1</a></li>
 <li><a href="1.60.0.html">Version 1.60.0</a></li>
+</ul>
+</li>
+<li><strong>Version 1.59.x</strong>
+<ul>
 <li><a href="1.59.3.html">Version 1.59.3</a></li>
 <li><a href="1.59.2.html">Version 1.59.2</a></li>
 <li><a href="1.59.1.1.html">Version 1.59.1.1</a></li>
 <li><a href="1.59.1.html">Version 1.59.1</a></li>
 <li><a href="1.59.0.html">Version 1.59.0</a></li>
+</ul>
+</li>
+<li><strong>Version 1.58.x</strong>
+<ul>
 <li><a href="1.58.1.1.html">Version 1.58.1.1</a></li>
 <li><a href="1.58.1.html">Version 1.58.1</a></li>
 <li><a href="1.58.0.html">Version 1.58.0</a></li>
+</ul>
+</li>
+<li><strong>Version 1.57.x</strong>
+<ul>
 <li><a href="1.57.1.html">Version 1.57.1</a></li>
 <li><a href="1.57.0.html">Version 1.57.0</a></li>
+</ul>
+</li>
+<li><strong>Version 1.56.x</strong>
+<ul>
 <li><a href="1.56.2.html">Version 1.56.2</a></li>
 <li><a href="1.56.1.html">Version 1.56.1</a></li>
 <li><a href="1.56.0.html">Version 1.56.0</a></li>
+</ul>
+</li>
+<li><strong>Version 1.55.x</strong>
+<ul>
 <li><a href="1.55.1.html">Version 1.55.1</a></li>
 <li><a href="1.55.0.html">Version 1.55.0</a></li>
+</ul>
+</li>
+<li><strong>Version 1.54.x</strong>
+<ul>
 <li><a href="1.54.1.html">Version 1.54.1</a></li>
 <li><a href="1.54.0.html">Version 1.54.0</a></li>
+</ul>
+</li>
+<li><strong>Version 1.53.x</strong>
+<ul>
 <li><a href="1.53.2.html">Version 1.53.2</a></li>
 <li><a href="1.53.1.2.html">Version 1.53.1.2</a></li>
 <li><a href="1.53.1.1.html">Version 1.53.1.1</a></li>
 <li><a href="1.53.1.html">Version 1.53.1</a></li>
 <li><a href="1.53.0.html">Version 1.53.0</a></li>
+</ul>
+</li>
+<li><strong>Version 1.49.x</strong>
+<ul>
 <li><a href="1.49.4.html">Version 1.49.4</a></li>
 <li><a href="1.49.3.html">Version 1.49.3</a></li>
 <li><a href="1.49.2.1.html">Version 1.49.2.1</a></li>
@@ -189,6 +232,9 @@
 <li><a href="1.49.1.html">Version 1.49.1</a></li>
 <li><a href="1.49.0.html">Version 1.49.0</a></li>
 </ul>
+</li>
+</ul>
+</details>
 
 </article>
 
@@ -210,7 +256,7 @@
     <footer class="border-top text-secondary">
       <div class="container-xxl">
         <div class="flex-fill">
-          PR #3763 · mattleibow/website-release-notes · 9452e61
+          PR #3763 · mattleibow/website-release-notes · e86e8fa
         </div>
       </div>
     </footer>
