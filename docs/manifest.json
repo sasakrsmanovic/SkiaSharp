@@ -14,11 +14,11 @@
       "type": "Toc",
       "source_relative_path": "TOC.yml",
       "output": {
-        ".html": {
-          "relative_path": "TOC.html"
-        },
         ".json": {
           "relative_path": "TOC.json"
+        },
+        ".html": {
+          "relative_path": "TOC.html"
         }
       },
       "version": ""
@@ -27,11 +27,11 @@
       "type": "Toc",
       "source_relative_path": "guides/TOC.yml",
       "output": {
-        ".html": {
-          "relative_path": "guides/TOC.html"
-        },
         ".json": {
           "relative_path": "guides/TOC.json"
+        },
+        ".html": {
+          "relative_path": "guides/TOC.html"
         }
       },
       "version": ""
@@ -11710,11 +11710,11 @@
       "type": "Toc",
       "source_relative_path": "releases/TOC.yml",
       "output": {
-        ".html": {
-          "relative_path": "releases/TOC.html"
-        },
         ".json": {
           "relative_path": "releases/TOC.json"
+        },
+        ".html": {
+          "relative_path": "releases/TOC.html"
         }
       },
       "version": ""
