@@ -91,37 +91,37 @@
 <p><strong>Platform expansion release</strong> · Preview only · <a href="https://www.nuget.org/packages/SkiaSharp/3.119.4-preview.1.1">NuGet</a> · <a href="https://github.com/mono/SkiaSharp/releases/tag/v3.119.4-preview.1.1">GitHub Release</a></p>
 </blockquote>
 <h2 id="highlights">Highlights</h2>
-<p>SkiaSharp 3.119.4 is a major platform expansion release. GTK 4 gets first-class support via the new <code>SkiaSharp.Views.Gtk4</code> package, Tizen gains x64 and ARM64 native builds, and Linux Bionic native assets are now included. On Windows, D3D12 DLLs are delay-loaded to prevent crashes on systems without DirectX 12, and the interactive Blazor WASM Gallery showcase debuts with 21 demos. The SDK moves to .NET 10, and <code>SKManagedStream</code> receives a significant internal refactor.</p>
+<p>This release dramatically expands platform reach with new GTK 4 views, Linux Bionic native support, Tizen multi-architecture builds, and .NET 10 SDK adoption. Three community contributors drove key improvements: ❤️ <a href="https://github.com/4Darmygeometry">@4Darmygeometry</a> added Linux Bionic support, C# 13 language features on legacy TFMs, and .NET Framework 4.8 targeting, while ❤️ <a href="https://github.com/SimonvBez">@SimonvBez</a> fixed an Android rendering regression in MAUI TabBar.</p>
 <h2 id="breaking-changes">Breaking Changes</h2>
 <p><em>None in this release.</em></p>
 <h2 id="new-features">New Features</h2>
 <h3 id="platform">Platform</h3>
 <ul>
-<li><strong>SkiaSharp.Views.Gtk4</strong> — Adds a new GTK 4 view package using GirCore.Gtk-4.0 bindings, enabling SkiaSharp rendering in modern GTK 4 apps. (<a href="https://github.com/mono/SkiaSharp/pull/3527">#3527</a>)</li>
-<li><strong>Linux Bionic native assets</strong> — Adds native library support for the Linux Bionic (Android-like) platform. ❤️ <a href="https://github.com/4Darmygeometry">@4Darmygeometry</a> (<a href="https://github.com/mono/SkiaSharp/pull/3217">#3217</a>)</li>
-<li><strong>Tizen x64 and ARM64 builds</strong> — Adds native build support for Tizen on x64 and arm64 architectures. (<a href="https://github.com/mono/SkiaSharp/pull/3620">#3620</a>)</li>
-<li><strong>Delay-load D3D12 DLLs</strong> — Prevents crashes on Windows systems without DirectX 12 by delay-loading D3D12 dependencies. (<a href="https://github.com/mono/SkiaSharp/pull/3633">#3633</a>)</li>
-<li><strong>Update to .NET 10 SDK</strong> — Moves the build to .NET 10 with workload version set pinning. (<a href="https://github.com/mono/SkiaSharp/pull/3514">#3514</a>)</li>
+<li><strong>GTK 4 views</strong> — New <code>SkiaSharp.Views.Gtk4</code> package using GirCore.Gtk-4.0 bindings brings first-class GTK 4 support to SkiaSharp. (<a href="https://github.com/mono/SkiaSharp/pull/3527">#3527</a>)</li>
+<li><strong>Linux Bionic native support</strong> — Adds native assets for Android's Bionic libc on Linux, enabling SkiaSharp in Bionic-based environments. ❤️ <a href="https://github.com/4Darmygeometry">@4Darmygeometry</a> (<a href="https://github.com/mono/SkiaSharp/pull/3217">#3217</a>)</li>
+<li><strong>Tizen x64 and arm64</strong> — Native build support for Tizen on both x64 and arm64 architectures. (<a href="https://github.com/mono/SkiaSharp/pull/3620">#3620</a>)</li>
+<li><strong>D3D12 delay-loading</strong> — D3D12 DLLs are now delay-loaded on Windows to prevent crashes on systems without DirectX 12. (<a href="https://github.com/mono/SkiaSharp/pull/3633">#3633</a>)</li>
 </ul>
 <h3 id="api-surface">API Surface</h3>
 <ul>
-<li><strong>SKManagedStream refactor</strong> — Replaces the parent/child chain in <code>SKManagedStream</code> with a <code>SKData</code> snapshot for duplicate/fork operations, improving reliability. (<a href="https://github.com/mono/SkiaSharp/pull/3589">#3589</a>)</li>
-<li><strong>PolySharp for C# 13 on legacy TFMs</strong> — Enables modern C# 13 language features on older target frameworks via PolySharp polyfills. ❤️ <a href="https://github.com/4Darmygeometry">@4Darmygeometry</a> (<a href="https://github.com/mono/SkiaSharp/pull/3642">#3642</a>)</li>
+<li><strong>SKManagedStream refactor</strong> — Replaced the parent/child chain with an <code>SKData</code> snapshot for duplicate/fork operations, improving reliability and simplifying the stream lifecycle. (<a href="https://github.com/mono/SkiaSharp/pull/3589">#3589</a>)</li>
 </ul>
-<h3 id="gpu--rendering">GPU &amp; Rendering</h3>
+<h3 id="build--compatibility">Build &amp; Compatibility</h3>
 <ul>
-<li><strong>Interactive Blazor WASM Gallery</strong> — Redesigns the sample gallery as an interactive Blazor WebAssembly showcase with 21 rendering demos. (<a href="https://github.com/mono/SkiaSharp/pull/3578">#3578</a>)</li>
+<li><strong>.NET 10 SDK</strong> — Updated to .NET 10 SDK with workload version set pinning. (<a href="https://github.com/mono/SkiaSharp/pull/3514">#3514</a>)</li>
+<li><strong>C# 13 on legacy TFMs</strong> — Added PolySharp to enable C# 13 language features on older target frameworks. ❤️ <a href="https://github.com/4Darmygeometry">@4Darmygeometry</a> (<a href="https://github.com/mono/SkiaSharp/pull/3642">#3642</a>)</li>
+<li><strong>.NET Framework 4.8</strong> — Updated full framework target from net462 to net48. ❤️ <a href="https://github.com/4Darmygeometry">@4Darmygeometry</a> (<a href="https://github.com/mono/SkiaSharp/pull/3631">#3631</a>)</li>
+<li><strong>Stricter native linking</strong> — Enforced <code>--no-undefined</code> linker flag for Linux and Android native builds to catch missing symbols at build time. (<a href="https://github.com/mono/SkiaSharp/pull/3629">#3629</a>)</li>
 </ul>
 <h2 id="bug-fixes">Bug Fixes</h2>
 <ul>
-<li><strong>Fix SKGLView not rendering after tab switch</strong> — Resolves a MAUI bug where <code>SKGLView</code> stopped rendering after switching tabs in a <code>TabBar</code>. ❤️ <a href="https://github.com/SimonvBez">@SimonvBez</a> (<a href="https://github.com/mono/SkiaSharp/pull/3076">#3076</a>)</li>
-<li><strong>Fix tvOS device/simulator split</strong> — Splits tvOS native builds into separate device and simulator targets to match the iOS pattern. (<a href="https://github.com/mono/SkiaSharp/pull/3561">#3561</a>, <a href="https://github.com/mono/SkiaSharp/pull/3563">#3563</a>)</li>
-<li><strong>Fix Cairo assertion crash in GTK4</strong> — Resolves a Cairo assertion failure in the GTK4 <code>SKDrawingArea</code>. (<a href="https://github.com/mono/SkiaSharp/pull/3562">#3562</a>)</li>
-<li><strong>Fix loongarch64 Linux build mapping</strong> — Corrects the architecture mapping for LoongArch64 builds. (<a href="https://github.com/mono/SkiaSharp/pull/3648">#3648</a>)</li>
-<li><strong>Update FullFrameworkTargetFrameworks to net48</strong> — Raises the minimum .NET Framework target to 4.8. ❤️ <a href="https://github.com/4Darmygeometry">@4Darmygeometry</a> (<a href="https://github.com/mono/SkiaSharp/pull/3631">#3631</a>)</li>
-<li><strong>Enforce <code>--no-undefined</code> linker flag</strong> — Adds the <code>-Wl,--no-undefined</code> flag for Linux and Android native builds to catch missing symbols at link time. (<a href="https://github.com/mono/SkiaSharp/pull/3629">#3629</a>)</li>
+<li><strong>Fixed SKGLView not rendering after tab switch</strong> — Resolved an issue where <code>SKGLView</code> on Android would stop rendering when switching tabs in a MAUI TabBar. ❤️ <a href="https://github.com/SimonvBez">@SimonvBez</a> (<a href="https://github.com/mono/SkiaSharp/pull/3076">#3076</a>)</li>
+<li><strong>Fixed tvOS native builds</strong> — Split device and simulator native builds to match the iOS pattern, resolving build failures. (<a href="https://github.com/mono/SkiaSharp/pull/3561">#3561</a>, <a href="https://github.com/mono/SkiaSharp/pull/3563">#3563</a>)</li>
+<li><strong>Fixed GTK 4 Cairo assertion crash</strong> — Resolved a Cairo assertion crash in <code>GTK4 SKDrawingArea</code>. (<a href="https://github.com/mono/SkiaSharp/pull/3562">#3562</a>)</li>
+<li><strong>Fixed loongarch64 Linux builds</strong> — Corrected architecture mapping for LoongArch64 Linux builds. (<a href="https://github.com/mono/SkiaSharp/pull/3648">#3648</a>)</li>
+<li><strong>Fixed WinForms designer detection</strong> — Uses <code>DesignMode</code> property directly in WindowsForms controls for more reliable designer detection. (<a href="https://github.com/mono/SkiaSharp/pull/3614">#3614</a>)</li>
 </ul>
-<p>Plus extensive sample updates across all platforms, CI improvements, and documentation enhancements.</p>
+<p>Plus several CI, documentation, sample, and tooling improvements.</p>
 <h2 id="platform-support">Platform Support</h2>
 <table>
 <thead>
@@ -132,28 +132,28 @@
 </thead>
 <tbody>
 <tr>
-<td>🍎 Apple</td>
-<td>tvOS device/simulator build split</td>
+<td>🐧 Linux</td>
+<td>GTK 4 views, Bionic native support, loongarch64 fix, Cairo crash fix</td>
 </tr>
 <tr>
 <td>🪟 Windows</td>
-<td>D3D12 delay-loading, MSIX WinUI sample</td>
+<td>D3D12 delay-loading, WinForms designer fix, .NET Framework 4.8 target</td>
 </tr>
 <tr>
-<td>🐧 Linux</td>
-<td>GTK 4 views, Bionic assets, LoongArch64 fix, Cairo crash fix</td>
+<td>🍎 Apple</td>
+<td>tvOS device/simulator split fix</td>
 </tr>
 <tr>
 <td>🤖 Android</td>
-<td>SKGLView tab switch fix in MAUI</td>
+<td>SKGLView TabBar rendering fix</td>
 </tr>
 <tr>
-<td>🌐 WebAssembly</td>
-<td>Interactive Blazor Gallery with 21 demos</td>
+<td>📺 Tizen</td>
+<td>x64 and arm64 native builds</td>
 </tr>
 <tr>
 <td>📦 General</td>
-<td>.NET 10 SDK, Tizen x64/ARM64, PolySharp C# 13</td>
+<td>.NET 10 SDK, C# 13 on legacy TFMs, stricter native linking</td>
 </tr>
 </tbody>
 </table>
@@ -168,11 +168,11 @@
 <tbody>
 <tr>
 <td><a href="https://github.com/4Darmygeometry">@4Darmygeometry</a></td>
-<td>Linux Bionic assets, PolySharp C# 13 support, net48 target update</td>
+<td>Linux Bionic native support, C# 13 on legacy TFMs, .NET Framework 4.8 target</td>
 </tr>
 <tr>
 <td><a href="https://github.com/SimonvBez">@SimonvBez</a></td>
-<td>Fixed SKGLView rendering after MAUI tab switch</td>
+<td>Fixed SKGLView not rendering after tab switch in MAUI TabBar</td>
 </tr>
 </tbody>
 </table>
@@ -180,10 +180,11 @@
 <ul>
 <li><a href="https://github.com/mono/SkiaSharp/compare/v3.119.3-preview.1.1...v3.119.4-preview.1.1">Full Changelog</a></li>
 <li><a href="https://www.nuget.org/packages/SkiaSharp/3.119.4-preview.1.1">NuGet Package</a></li>
+<li><a href="https://github.com/mono/SkiaSharp/tree/main/changelogs/SkiaSharp/3.119.4">API Diff</a></li>
 </ul>
 <hr>
 <h2 id="preview-1-april-23-2026">Preview 1 (April 23, 2026)</h2>
-<p>GTK 4 views, Linux Bionic assets, Tizen builds, D3D12 delay-loading, Blazor WASM Gallery, .NET 10 SDK, SKManagedStream refactor, and MAUI tab switch rendering fix.</p>
+<p>New GTK 4 views, Linux Bionic support, Tizen multi-architecture builds, D3D12 delay-loading, .NET 10 SDK, and several platform bug fixes.</p>
 <p><a href="https://github.com/mono/SkiaSharp/compare/v3.119.3-preview.1.1...v3.119.4-preview.1.1">Full Changelog</a></p>
 
 </article>
@@ -206,7 +207,7 @@
     <footer class="border-top text-secondary">
       <div class="container-xxl">
         <div class="flex-fill">
-          PR #3787 · dev/automated-release-notes · e037183
+          PR #3787 · dev/automated-release-notes · 290b7d4
         </div>
       </div>
     </footer>

@@ -88,35 +88,31 @@
 <h1 id="version-31191">Version 3.119.1</h1>
 
 <blockquote>
-<p><strong>Stability and platform fixes</strong> · Released September 23, 2025 · <a href="https://www.nuget.org/packages/SkiaSharp/3.119.1">NuGet</a> · <a href="https://github.com/mono/SkiaSharp/releases/tag/v3.119.1">GitHub Release</a></p>
+<p><strong>Bug fix &amp; stability release</strong> · Released September 23, 2025 · <a href="https://www.nuget.org/packages/SkiaSharp/3.119.1">NuGet</a> · <a href="https://github.com/mono/SkiaSharp/releases/tag/v3.119.1">GitHub Release</a></p>
 </blockquote>
 <h2 id="highlights">Highlights</h2>
-<p>SkiaSharp 3.119.1 focuses on stability and platform compatibility. Key fixes include preventing double initialization of <code>SKMetalView</code>, a crash guard for <code>SKAutoCanvasRestore</code>, Metal compatibility for iOS 15 and earlier, correct PDF metadata date handling, and properly loading EGL/GLESv2 in unpackaged WinUI apps. The new <code>PostScriptName</code> property on <code>SKTypeface</code> rounds out the release. Five community contributors drove the critical fixes.</p>
+<p>This release fixes several crashes and rendering issues across Apple and Windows platforms, adds the <code>PostScriptName</code> property to <code>SKTypeface</code>, and updates zlib to address security vulnerabilities. Five community contributors drove the majority of user-facing changes in this release.</p>
 <h2 id="breaking-changes">Breaking Changes</h2>
 <p><em>None in this release.</em></p>
 <h2 id="new-features">New Features</h2>
-<h3 id="text--fonts">Text &amp; Fonts</h3>
+<h3 id="api-surface">API Surface</h3>
 <ul>
-<li><strong>PostScriptName on SKTypeface</strong> — Exposes the PostScript name for font identification workflows. ❤️ <a href="https://github.com/jonlipsky">@jonlipsky</a> (<a href="https://github.com/mono/SkiaSharp/pull/3263">#3263</a>)</li>
+<li><strong><code>PostScriptName</code> on <code>SKTypeface</code></strong> — Exposes the PostScript name of the typeface, making it easier to identify and match fonts programmatically. ❤️ <a href="https://github.com/jonlipsky">@jonlipsky</a> (<a href="https://github.com/mono/SkiaSharp/pull/3263">#3263</a>)</li>
 </ul>
-<h3 id="platform">Platform</h3>
+<h2 id="security">Security</h2>
 <ul>
-<li><strong>Fix unpackaged WinUI loading</strong> — Builds EGL as Win32 and GLESv2 as WASDK to resolve native library loading failures in unpackaged WinUI 3 apps. (<a href="https://github.com/mono/SkiaSharp/pull/3338">#3338</a>)</li>
-<li><strong>WinUI Interop built as /MT</strong> — Statically links the C runtime in the WinUI interop DLL, eliminating external CRT dependencies. (<a href="https://github.com/mono/SkiaSharp/pull/3341">#3341</a>)</li>
-</ul>
-<h3 id="security">Security</h3>
-<ul>
-<li><strong>Update zlib to v1.3.0.1+</strong> — Bumps zlib for security and stability improvements. (<a href="https://github.com/mono/SkiaSharp/pull/3058">#3058</a>)</li>
+<li><strong>Update zlib to v1.3.0.1+</strong> — Bumps the bundled zlib to pick up upstream security fixes. (<a href="https://github.com/mono/SkiaSharp/pull/3058">#3058</a>)</li>
 </ul>
 <h2 id="bug-fixes">Bug Fixes</h2>
 <ul>
-<li><strong>Avoid double-initializing SKMetalView</strong> — Prevents a crash when <code>SKMetalView</code> is initialized more than once. ❤️ <a href="https://github.com/jeremy-visionaid">@jeremy-visionaid</a> (<a href="https://github.com/mono/SkiaSharp/pull/3256">#3256</a>)</li>
-<li><strong>SKAutoCanvasRestore crash guard</strong> — Prevents a crash when <code>Dispose</code> is called after the canvas has already been disposed. ❤️ <a href="https://github.com/taublast">@taublast</a> (<a href="https://github.com/mono/SkiaSharp/pull/3291">#3291</a>)</li>
-<li><strong>SKXamlCanvas opaque fix on Mac Catalyst</strong> — Ensures <code>SKXamlCanvas</code> is not forced opaque on Mac Catalyst, fixing transparency. ❤️ <a href="https://github.com/spouliot">@spouliot</a> (<a href="https://github.com/mono/SkiaSharp/pull/3236">#3236</a>)</li>
-<li><strong>Metal hotfix for iOS 15 and lower</strong> — Fixes Metal rendering compatibility on devices running iOS 15 or earlier. ❤️ <a href="https://github.com/taublast">@taublast</a> (<a href="https://github.com/mono/SkiaSharp/pull/3293">#3293</a>)</li>
-<li><strong>Fix UTC DateTime conversion for PDF metadata</strong> — Corrects the date-time conversion in <code>SKDocumentPdfMetadata</code> so timestamps are stored accurately. ❤️ <a href="https://github.com/jeremy-visionaid">@jeremy-visionaid</a> (<a href="https://github.com/mono/SkiaSharp/pull/3333">#3333</a>)</li>
+<li><strong>Avoid initializing <code>SKMetalView</code> twice</strong> — Prevents a double-initialization that could cause rendering issues on Apple platforms. ❤️ <a href="https://github.com/jeremy-visionaid">@jeremy-visionaid</a> (<a href="https://github.com/mono/SkiaSharp/pull/3256">#3256</a>)</li>
+<li><strong><code>SKAutoCanvasRestore</code> crash on disposed canvas</strong> — Prevents a crash when <code>Dispose</code> is called after the underlying canvas has already been disposed. ❤️ <a href="https://github.com/taublast">@taublast</a> (<a href="https://github.com/mono/SkiaSharp/pull/3291">#3291</a>)</li>
+<li><strong><code>SKXamlCanvas</code> opaque on Mac Catalyst</strong> — Fixes the XAML canvas being incorrectly opaque on Mac Catalyst, which blocked content behind it from showing through. ❤️ <a href="https://github.com/spouliot">@spouliot</a> (<a href="https://github.com/mono/SkiaSharp/pull/3236">#3236</a>)</li>
+<li><strong>Metal crash on iOS 15 and lower</strong> — Fixes a Metal rendering crash on older iOS versions. ❤️ <a href="https://github.com/taublast">@taublast</a> (<a href="https://github.com/mono/SkiaSharp/pull/3293">#3293</a>)</li>
+<li><strong>UTC <code>DateTime</code> conversion for <code>SKDocumentPdfMetadata</code></strong> — Corrects timezone handling when setting PDF document metadata dates. ❤️ <a href="https://github.com/jeremy-visionaid">@jeremy-visionaid</a> (<a href="https://github.com/mono/SkiaSharp/pull/3333">#3333</a>)</li>
+<li><strong>Unpackaged WinUI loading issues</strong> — Builds EGL as Win32 and GLESv2 as WASDK to fix native library loading failures in unpackaged WinUI apps. (<a href="https://github.com/mono/SkiaSharp/pull/3338">#3338</a>)</li>
+<li><strong>WinUI Interop built as <code>/MT</code></strong> — Switches the WinUI interop library to static CRT linking, eliminating runtime dependency issues. (<a href="https://github.com/mono/SkiaSharp/pull/3341">#3341</a>)</li>
 </ul>
-<p>Plus several CI and pipeline improvements.</p>
 <h2 id="platform-support">Platform Support</h2>
 <table>
 <thead>
@@ -128,15 +124,15 @@
 <tbody>
 <tr>
 <td>🍎 Apple</td>
-<td>Metal hotfix for iOS 15, SKXamlCanvas transparency on Mac Catalyst</td>
+<td>Fixed <code>SKMetalView</code> double init, Metal crash on iOS ≤ 15, <code>SKXamlCanvas</code> opacity on Mac Catalyst</td>
 </tr>
 <tr>
 <td>🪟 Windows</td>
-<td>WinUI unpackaged loading fix, WinUI /MT interop</td>
+<td>Fixed unpackaged WinUI loading, WinUI interop <code>/MT</code> linking</td>
 </tr>
 <tr>
 <td>🎨 Core API</td>
-<td><code>PostScriptName</code> on SKTypeface, SKAutoCanvasRestore crash guard</td>
+<td>Added <code>SKTypeface.PostScriptName</code>, fixed <code>SKAutoCanvasRestore</code> crash, PDF metadata UTC fix</td>
 </tr>
 </tbody>
 </table>
@@ -151,19 +147,23 @@
 <tbody>
 <tr>
 <td><a href="https://github.com/jeremy-visionaid">@jeremy-visionaid</a></td>
-<td>Fixed double-init SKMetalView, fixed PDF metadata DateTime</td>
+<td>Fixed <code>SKMetalView</code> double initialization, PDF metadata UTC conversion</td>
 </tr>
 <tr>
 <td><a href="https://github.com/taublast">@taublast</a></td>
-<td>SKAutoCanvasRestore crash guard, Metal hotfix for iOS 15</td>
+<td>Fixed <code>SKAutoCanvasRestore</code> crash, Metal crash on iOS ≤ 15</td>
 </tr>
 <tr>
 <td><a href="https://github.com/spouliot">@spouliot</a></td>
-<td>Fixed SKXamlCanvas opacity on Mac Catalyst</td>
+<td>Fixed <code>SKXamlCanvas</code> opacity on Mac Catalyst</td>
 </tr>
 <tr>
 <td><a href="https://github.com/jonlipsky">@jonlipsky</a></td>
-<td>Added PostScriptName to SKTypeface</td>
+<td>Added <code>PostScriptName</code> to <code>SKTypeface</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/pjcollins">@pjcollins</a></td>
+<td>CI pipeline improvements</td>
 </tr>
 </tbody>
 </table>
@@ -175,7 +175,7 @@
 </ul>
 <hr>
 <h2 id="preview-1-september-8-2025">Preview 1 (September 8, 2025)</h2>
-<p>Stability fixes for Metal on Apple platforms, WinUI loading improvements, PDF metadata DateTime fix, and new PostScriptName API on SKTypeface.</p>
+<p>All changes listed above were introduced in this preview, including Metal and WinUI fixes, the new <code>SKTypeface.PostScriptName</code> API, and a zlib security update.</p>
 <p><a href="https://github.com/mono/SkiaSharp/compare/v3.119.0...v3.119.1-preview.1.1">Full Changelog</a></p>
 
 </article>
@@ -198,7 +198,7 @@
     <footer class="border-top text-secondary">
       <div class="container-xxl">
         <div class="flex-fill">
-          PR #3787 · dev/automated-release-notes · e037183
+          PR #3787 · dev/automated-release-notes · 290b7d4
         </div>
       </div>
     </footer>
