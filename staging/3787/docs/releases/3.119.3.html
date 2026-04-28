@@ -91,26 +91,26 @@
 <p><strong>Security &amp; stability release</strong> · Preview only · <a href="https://www.nuget.org/packages/SkiaSharp/3.119.3-preview.1.1">NuGet</a> · <a href="https://github.com/mono/SkiaSharp/releases/tag/v3.119.3-preview.1.1">GitHub Release</a></p>
 </blockquote>
 <h2 id="highlights">Highlights</h2>
-<p>This release extends Spectre mitigations to Linux, bumps four native dependencies to their latest versions, and fixes two crashes — an AoT failure with <code>IlcDisableReflection=true</code> and a Linux ARM64 crash caused by missing fontconfig. ❤️ <a href="https://github.com/sshumakov">@sshumakov</a> contributed the Spectre hardening across both Windows and Linux.</p>
+<p>This release extends Spectre mitigations to Linux native builds, updates four native dependencies to their latest versions, and fixes two crashes — an AoT failure when <code>IlcDisableReflection=true</code> and a Linux ARM64 crash caused by missing fontconfig in the cross-compile sysroot. Community contributor ❤️ <a href="https://github.com/sshumakov">@sshumakov</a> drove the Spectre hardening across both Windows and Linux.</p>
 <h2 id="breaking-changes">Breaking Changes</h2>
 <p><em>None in this release.</em></p>
-<h2 id="new-features">New Features</h2>
-<h3 id="security">Security</h3>
+<h2 id="security">Security</h2>
 <ul>
-<li><strong>Spectre mitigation for Windows</strong> — Enables the <code>/Qspectre</code> compiler flag for <code>libSkiaSharp.dll</code>, hardening Windows native builds against speculative-execution attacks. ❤️ <a href="https://github.com/sshumakov">@sshumakov</a> (<a href="https://github.com/mono/SkiaSharp/pull/3496">#3496</a>)</li>
-<li><strong>Spectre mitigation for Linux</strong> — Enables <code>-mretpoline</code> for <code>libSkiaSharp.so</code>, extending Spectre mitigations to all Linux native builds. ❤️ <a href="https://github.com/sshumakov">@sshumakov</a> (<a href="https://github.com/mono/SkiaSharp/pull/3502">#3502</a>)</li>
-</ul>
-<h3 id="dependencies">Dependencies</h3>
-<ul>
-<li><strong>libpng → 1.6.54</strong> — Updated from 1.6.47 to the latest stable release. (<a href="https://github.com/mono/SkiaSharp/pull/3452">#3452</a>)</li>
-<li><strong>libexpat → 2.7.3</strong> — Updated from 2.6.4 with security and stability fixes. (<a href="https://github.com/mono/SkiaSharp/pull/3458">#3458</a>)</li>
-<li><strong>brotli → 1.2.0</strong> — Updated to the latest upstream release. (<a href="https://github.com/mono/SkiaSharp/pull/3469">#3469</a>)</li>
-<li><strong>libwebp → 1.6.0</strong> — Updated to the latest upstream release. (<a href="https://github.com/mono/SkiaSharp/pull/3478">#3478</a>)</li>
+<li><strong>Spectre mitigation for Linux</strong> — Enables the Spectre mitigation compiler flag for <code>libSkiaSharp.so</code> on Linux builds. ❤️ <a href="https://github.com/sshumakov">@sshumakov</a> (<a href="https://github.com/mono/SkiaSharp/pull/3502">#3502</a>)</li>
+<li><strong>Spectre mitigation for Windows</strong> — Enables <code>/Qspectre</code> for <code>libSkiaSharp.dll</code> on Windows builds. ❤️ <a href="https://github.com/sshumakov">@sshumakov</a> (<a href="https://github.com/mono/SkiaSharp/pull/3496">#3496</a>)</li>
 </ul>
 <h2 id="bug-fixes">Bug Fixes</h2>
 <ul>
-<li><strong>Fixed AoT crash when <code>IlcDisableReflection=true</code></strong> — Resolved a native AoT failure that occurred when reflection was fully disabled. (<a href="https://github.com/mono/SkiaSharp/pull/3485">#3485</a>)</li>
-<li><strong>Fixed Linux ARM64 crash from missing fontconfig</strong> — Added fontconfig to the cross-compile sysroot, preventing a crash on Linux ARM64 devices. (<a href="https://github.com/mono/SkiaSharp/pull/3494">#3494</a>)</li>
+<li><strong>Fixed AoT crash when <code>IlcDisableReflection=true</code></strong> — Resolved a crash that occurred in NativeAOT-compiled apps with reflection disabled. (<a href="https://github.com/mono/SkiaSharp/pull/3485">#3485</a>)</li>
+<li><strong>Fixed Linux ARM64 crash from missing fontconfig</strong> — Added fontconfig to the cross-compile sysroot so Linux ARM64 builds no longer crash at startup. (<a href="https://github.com/mono/SkiaSharp/pull/3494">#3494</a>)</li>
+</ul>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li><strong>libpng → 1.6.54</strong> — Picks up upstream bug fixes and security patches. (<a href="https://github.com/mono/SkiaSharp/pull/3452">#3452</a>)</li>
+<li><strong>libexpat → 2.7.3</strong> — Updated from 2.6.4 with multiple upstream CVE fixes. (<a href="https://github.com/mono/SkiaSharp/pull/3458">#3458</a>)</li>
+<li><strong>brotli → 1.2.0</strong> — Updated to the latest upstream release. (<a href="https://github.com/mono/SkiaSharp/pull/3469">#3469</a>)</li>
+<li><strong>libwebp → 1.6.0</strong> — Updated to the latest upstream release. (<a href="https://github.com/mono/SkiaSharp/pull/3478">#3478</a>)</li>
+<li><strong>Removed unused dependencies</strong> — Cleaned up unused native dependencies across platforms. (<a href="https://github.com/mono/SkiaSharp/pull/3463">#3463</a>)</li>
 </ul>
 <h2 id="platform-support">Platform Support</h2>
 <table>
@@ -131,7 +131,11 @@
 </tr>
 <tr>
 <td>🎨 Core API</td>
-<td>AoT reflection fix</td>
+<td>AoT <code>IlcDisableReflection</code> crash fix</td>
+</tr>
+<tr>
+<td>📦 General</td>
+<td>libpng 1.6.54, libexpat 2.7.3, brotli 1.2.0, libwebp 1.6.0</td>
 </tr>
 </tbody>
 </table>
@@ -158,7 +162,7 @@
 </ul>
 <hr>
 <h2 id="preview-1-february-11-2026">Preview 1 (February 11, 2026)</h2>
-<p>Spectre mitigations for Windows and Linux, four native dependency bumps, and two crash fixes (AoT reflection, Linux ARM64 fontconfig).</p>
+<p>Security hardening with Spectre mitigations for Windows and Linux, four native dependency updates, and two crash fixes (AoT and Linux ARM64).</p>
 <p><a href="https://github.com/mono/SkiaSharp/compare/v3.119.2...v3.119.3-preview.1.1">Full Changelog</a></p>
 
 </article>
@@ -181,7 +185,7 @@
     <footer class="border-top text-secondary">
       <div class="container-xxl">
         <div class="flex-fill">
-          PR #3787 · dev/automated-release-notes · 290b7d4
+          PR #3787 · dev/automated-release-notes · b9e0c99
         </div>
       </div>
     </footer>

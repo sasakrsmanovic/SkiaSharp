@@ -91,13 +91,13 @@
 <p><strong>Major feature release</strong> · Released April 29, 2025 · <a href="https://www.nuget.org/packages/SkiaSharp/3.119.0">NuGet</a> · <a href="https://github.com/mono/SkiaSharp/releases/tag/v3.119.0">GitHub Release</a></p>
 </blockquote>
 <h2 id="highlights">Highlights</h2>
-<p>This release bumps the Skia engine to milestone 119, adds Direct3D support on Windows, brings OpenGL to Windows ARM, and significantly expands Linux and Apple platform coverage — including tvOS Metal support, RISC-V 64, LoongArch64, and Alpine Linux builds. Nine community contributors drove the majority of user-facing changes in this release.</p>
+<p>This release upgrades the Skia engine to milestone 119 and brings significant platform expansion — Direct3D support on Windows, OpenGL on Windows ARM, tvOS Metal rendering, plus new Linux builds for RISC-V 64, LoongArch64, and Alpine. Nine community contributors drove the majority of user-facing changes, including ❤️ <a href="https://github.com/Kation">@Kation</a> (Direct3D), ❤️ <a href="https://github.com/ahmed605">@ahmed605</a> (SaveLayerRec), and ❤️ <a href="https://github.com/kasperk81">@kasperk81</a> (RISC-V, Alpine, and more).</p>
 <h2 id="breaking-changes">Breaking Changes</h2>
 <p><em>None in this release.</em></p>
 <h2 id="new-features">New Features</h2>
 <h3 id="engine">Engine</h3>
 <ul>
-<li><strong>Bump Skia to milestone 119</strong> — Updates the underlying Skia engine to Chrome milestone 119, bringing rendering improvements and new codec support. (<a href="https://github.com/mono/SkiaSharp/pull/3062">#3062</a>)</li>
+<li><strong>Skia milestone 119</strong> — Upgrades the underlying Skia graphics engine to Chrome milestone 119, bringing rendering improvements and new codec support. (<a href="https://github.com/mono/SkiaSharp/pull/3062">#3062</a>)</li>
 </ul>
 <h3 id="gpu--rendering">GPU &amp; Rendering</h3>
 <ul>
@@ -106,8 +106,8 @@
 </ul>
 <h3 id="api-surface">API Surface</h3>
 <ul>
-<li><strong>Missing SKColorFilter types</strong> — Adds <code>SKColorFilter</code> factory methods that were previously unavailable (arithmetic, table, lighting). (<a href="https://github.com/mono/SkiaSharp/pull/2882">#2882</a>)</li>
-<li><strong>SkCanvas::SaveLayerRec</strong> — Exposes <code>SaveLayer</code> with the full <code>SaveLayerRec</code> parameter set for advanced compositing. ❤️ <a href="https://github.com/ahmed605">@ahmed605</a> (<a href="https://github.com/mono/SkiaSharp/pull/2962">#2962</a>)</li>
+<li><strong>Missing <code>SKColorFilter</code> types</strong> — Adds <code>SKColorFilter</code> factory methods that were previously unavailable (arithmetic, table, lighting). (<a href="https://github.com/mono/SkiaSharp/pull/2882">#2882</a>)</li>
+<li><strong><code>SkCanvas::SaveLayerRec</code></strong> — Exposes <code>SaveLayer</code> with the full <code>SaveLayerRec</code> parameter set for advanced compositing. ❤️ <a href="https://github.com/ahmed605">@ahmed605</a> (<a href="https://github.com/mono/SkiaSharp/pull/2962">#2962</a>)</li>
 </ul>
 <h3 id="platform">Platform</h3>
 <ul>
@@ -115,7 +115,7 @@
 <li><strong>RISC-V 64 build support</strong> — Adds native build targets for the RISC-V 64-bit architecture on Linux. ❤️ <a href="https://github.com/kasperk81">@kasperk81</a> (<a href="https://github.com/mono/SkiaSharp/pull/3192">#3192</a>)</li>
 <li><strong>LoongArch64 build support</strong> — Adds native build targets for the LoongArch 64-bit architecture on Linux. ❤️ <a href="https://github.com/4Darmygeometry">@4Darmygeometry</a> (<a href="https://github.com/mono/SkiaSharp/pull/3198">#3198</a>)</li>
 <li><strong>Alpine Linux support</strong> — Extends the clang-cross toolchain to build for musl-based Alpine Linux. ❤️ <a href="https://github.com/kasperk81">@kasperk81</a> (<a href="https://github.com/mono/SkiaSharp/pull/3200">#3200</a>)</li>
-<li><strong>Android NDK r27c with 16KB page alignment</strong> — Updates the Android NDK and enables 16KB page alignment for newer Android devices. (<a href="https://github.com/mono/SkiaSharp/pull/3096">#3096</a>)</li>
+<li><strong>Android NDK r27c with 16 KB page alignment</strong> — Updates the Android NDK and enables 16 KB page alignment for newer Android devices. (<a href="https://github.com/mono/SkiaSharp/pull/3096">#3096</a>)</li>
 </ul>
 <h2 id="security">Security</h2>
 <ul>
@@ -124,11 +124,12 @@
 </ul>
 <h2 id="bug-fixes">Bug Fixes</h2>
 <ul>
-<li><strong>Fixed <code>SKImage.FromPicture</code> implementation</strong> — Corrects the native interop for creating images from recorded pictures. (<a href="https://github.com/mono/SkiaSharp/pull/3231">#3231</a>)</li>
-<li><strong>Fixed incorrect call in SafeRef</strong> — Resolves a misrouted native call that could cause unexpected behavior. ❤️ <a href="https://github.com/kkwpsv">@kkwpsv</a> (<a href="https://github.com/mono/SkiaSharp/pull/3143">#3143</a>)</li>
-<li><strong>iOS Simulator Metal performance fix</strong> — Avoids unnecessary GPU work on the simulator, dramatically improving performance. ❤️ <a href="https://github.com/taublast">@taublast</a> (<a href="https://github.com/mono/SkiaSharp/pull/3156">#3156</a>)</li>
-<li><strong>.NET Framework/Mono <code>packages.config</code> regression</strong> — Fixes a packaging regression that broke projects using the classic NuGet format. ❤️ <a href="https://github.com/sungaila">@sungaila</a> (<a href="https://github.com/mono/SkiaSharp/pull/3112">#3112</a>)</li>
+<li><strong>Fixed <code>SKImage.FromPicture</code> implementation</strong> — Corrects image creation from recorded pictures when no color space is provided; fixes null return. Fixes <a href="https://github.com/mono/SkiaSharp/issues/3157">#3157</a>. (<a href="https://github.com/mono/SkiaSharp/pull/3231">#3231</a>)</li>
+<li><strong>Fixed incorrect call in <code>SafeRef</code></strong> — Resolves a misrouted native call that could cause unexpected behavior. ❤️ <a href="https://github.com/kkwpsv">@kkwpsv</a> (<a href="https://github.com/mono/SkiaSharp/pull/3143">#3143</a>)</li>
+<li><strong>iOS Simulator Metal performance</strong> — Avoids unnecessary GPU work on the simulator, dramatically improving performance. ❤️ <a href="https://github.com/taublast">@taublast</a> (<a href="https://github.com/mono/SkiaSharp/pull/3156">#3156</a>)</li>
+<li><strong>.NET Framework / Mono <code>packages.config</code> regression</strong> — Fixes a packaging regression that broke projects using the classic NuGet format. ❤️ <a href="https://github.com/sungaila">@sungaila</a> (<a href="https://github.com/mono/SkiaSharp/pull/3112">#3112</a>)</li>
 <li><strong>Vulkan Memory Allocator updated to 3.2.1</strong> — Picks up stability fixes for Vulkan rendering. ❤️ <a href="https://github.com/kasperk81">@kasperk81</a> (<a href="https://github.com/mono/SkiaSharp/pull/3196">#3196</a>)</li>
+<li><strong>Broader Linux compatibility</strong> — Increases the range of supported Linux configurations. (<a href="https://github.com/mono/SkiaSharp/pull/3209">#3209</a>)</li>
 </ul>
 <p>Plus several CI, build system, and infrastructure improvements.</p>
 <h2 id="platform-support">Platform Support</h2>
@@ -150,15 +151,15 @@
 </tr>
 <tr>
 <td>🐧 Linux</td>
-<td>RISC-V 64, LoongArch64, Alpine (musl) support</td>
+<td>RISC-V 64, LoongArch64, Alpine (musl), broader compatibility</td>
 </tr>
 <tr>
 <td>🤖 Android</td>
-<td>NDK r27c, 16KB page alignment</td>
+<td>NDK r27c, 16 KB page alignment</td>
 </tr>
 <tr>
 <td>🎨 Core API</td>
-<td>Skia m119, new SKColorFilter types, SaveLayerRec</td>
+<td>Skia m119, new <code>SKColorFilter</code> types, <code>SaveLayerRec</code></td>
 </tr>
 </tbody>
 </table>
@@ -172,20 +173,20 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/MartinZikmund">@MartinZikmund</a></td>
-<td>tvOS <code>SKMetalView</code> support</td>
+<td><a href="https://github.com/Kation">@Kation</a></td>
+<td>Direct3D support on Windows</td>
 </tr>
 <tr>
 <td><a href="https://github.com/ahmed605">@ahmed605</a></td>
 <td><code>SkCanvas::SaveLayerRec</code> implementation</td>
 </tr>
 <tr>
-<td><a href="https://github.com/Kation">@Kation</a></td>
-<td>Direct3D on Windows</td>
+<td><a href="https://github.com/MartinZikmund">@MartinZikmund</a></td>
+<td>tvOS <code>SKMetalView</code> support</td>
 </tr>
 <tr>
 <td><a href="https://github.com/kasperk81">@kasperk81</a></td>
-<td>RISC-V 64, Alpine Linux builds, VMA update</td>
+<td>RISC-V 64, Alpine Linux builds, Vulkan Memory Allocator update</td>
 </tr>
 <tr>
 <td><a href="https://github.com/4Darmygeometry">@4Darmygeometry</a></td>
@@ -193,7 +194,7 @@
 </tr>
 <tr>
 <td><a href="https://github.com/kkwpsv">@kkwpsv</a></td>
-<td>SafeRef native call fix</td>
+<td><code>SafeRef</code> native call fix</td>
 </tr>
 <tr>
 <td><a href="https://github.com/taublast">@taublast</a></td>
@@ -201,7 +202,7 @@
 </tr>
 <tr>
 <td><a href="https://github.com/sungaila">@sungaila</a></td>
-<td>.NET Framework/Mono <code>packages.config</code> fix</td>
+<td>.NET Framework / Mono <code>packages.config</code> fix</td>
 </tr>
 <tr>
 <td><a href="https://github.com/pjcollins">@pjcollins</a></td>
@@ -211,13 +212,13 @@
 </table>
 <h2 id="links">Links</h2>
 <ul>
-<li><a href="https://github.com/mono/SkiaSharp/compare/v3.118.0-preview.2.3...v3.119.0">Full Changelog</a></li>
+<li><a href="https://github.com/mono/SkiaSharp/compare/v3.116.1...v3.119.0">Full Changelog</a></li>
 <li><a href="https://www.nuget.org/packages/SkiaSharp/3.119.0">NuGet Package</a></li>
 <li><a href="https://github.com/mono/SkiaSharp/tree/main/changelogs/SkiaSharp/3.119.0">API Diff</a></li>
 </ul>
 <hr>
 <h2 id="preview-1-april-1-2025">Preview 1 (April 1, 2025)</h2>
-<p>Bumped Skia to milestone 119 with Direct3D on Windows, tvOS Metal support, new SKColorFilter types, SaveLayerRec API, RISC-V 64/LoongArch64/Alpine Linux builds, and multiple bug fixes including iOS Simulator performance and .NET Framework compatibility.</p>
+<p>Bumped Skia to milestone 119 with Direct3D on Windows, tvOS Metal support, new <code>SKColorFilter</code> types, <code>SaveLayerRec</code> API, RISC-V 64 / LoongArch64 / Alpine Linux builds, and multiple bug fixes including iOS Simulator performance and .NET Framework compatibility.</p>
 <p><a href="https://github.com/mono/SkiaSharp/compare/v3.118.0-preview.2.3...v3.119.0-preview.1.2">Full Changelog</a></p>
 
 </article>
@@ -240,7 +241,7 @@
     <footer class="border-top text-secondary">
       <div class="container-xxl">
         <div class="flex-fill">
-          PR #3787 · dev/automated-release-notes · 290b7d4
+          PR #3787 · dev/automated-release-notes · b9e0c99
         </div>
       </div>
     </footer>
