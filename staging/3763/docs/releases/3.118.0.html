@@ -88,38 +88,34 @@
 <h1 id="version-31180">Version 3.118.0</h1>
 
 <blockquote>
-<p><strong>Skia milestone 118 with dependency hardening</strong> · Preview released December 5, 2024 · <a href="https://www.nuget.org/packages/SkiaSharp/3.118.0-preview.2.3">NuGet</a> · <a href="https://github.com/mono/SkiaSharp/releases/tag/v3.118.0-preview.2.3">GitHub Release</a></p>
+<p><strong>Skia engine update and dependency refresh</strong> · Preview only · <a href="https://www.nuget.org/packages/SkiaSharp/3.118.0-preview.2.3">NuGet</a> · <a href="https://github.com/mono/SkiaSharp/releases/tag/v3.118.0-preview.2.3">GitHub Release</a></p>
 </blockquote>
 <h2 id="highlights">Highlights</h2>
-<p>SkiaSharp 3.118.0 updates the Skia engine to milestone 118 and refreshes several native dependencies including FreeType, libexpat, libjpeg-turbo, and HarfBuzz. This release also brings Metal <code>GRBackendRenderTarget</code> APIs to all platforms, resolves .NET 9 Blazor compatibility issues, and adds Android 16KB page alignment support. One community contributor expanded Metal API coverage.</p>
-<div class="NOTE">
-<h5>Note</h5>
-<p>Version 3.118.0 was released only as previews and was not published as a stable release.</p>
-</div>
+<p>SkiaSharp 3.118.0 updates the Skia engine through milestones 117 and 118, refreshes four native dependencies with security and stability fixes, and extends the Metal GPU API to all Apple platforms. Blazor WebAssembly gets several compatibility fixes for .NET 9 and base path configurations. Community contributor <a href="https://github.com/spouliot">@spouliot</a> contributed the Metal API expansion.</p>
 <h2 id="breaking-changes">Breaking Changes</h2>
 <p><em>None in this release.</em></p>
 <h2 id="new-features">New Features</h2>
 <h3 id="engine">Engine</h3>
 <ul>
-<li><strong>Skia updated to milestone 118</strong> — Core graphics engine updated through milestones 117 and 118. (<a href="https://github.com/mono/SkiaSharp/pull/3047">#3047</a>, <a href="https://github.com/mono/SkiaSharp/pull/3048">#3048</a>)</li>
+<li><strong>Skia milestone 117</strong> — Updated the Skia engine to Chrome milestone 117. (<a href="https://github.com/mono/SkiaSharp/pull/3047">#3047</a>)</li>
+<li><strong>Skia milestone 118</strong> — Further updated to Chrome milestone 118 with additional rendering improvements. (<a href="https://github.com/mono/SkiaSharp/pull/3048">#3048</a>)</li>
 </ul>
 <h3 id="gpu--rendering">GPU &amp; Rendering</h3>
 <ul>
-<li><strong>Metal GRBackendRenderTarget on all platforms</strong> — Metal API for <code>GRBackendRenderTarget</code> is now available on all platforms, not just Apple. ❤️ @spouliot (<a href="https://github.com/mono/SkiaSharp/pull/3070">#3070</a>)</li>
+<li><strong>Metal API on all Apple platforms</strong> — <code>GRBackendRenderTarget</code> Metal API is now available on iOS, macOS, tvOS, and Mac Catalyst — not just macOS. ❤️ <a href="https://github.com/spouliot">@spouliot</a> (<a href="https://github.com/mono/SkiaSharp/pull/3070">#3070</a>)</li>
 </ul>
-<h3 id="dependencies">Dependencies</h3>
+<h3 id="security--dependencies">Security &amp; Dependencies</h3>
 <ul>
-<li><strong>FreeType updated to 2.13.3+</strong> — Font rendering engine updated with bug fixes and improvements. (<a href="https://github.com/mono/SkiaSharp/pull/3061">#3061</a>)</li>
-<li><strong>libexpat updated to v2.6.4</strong> — XML parser dependency updated. (<a href="https://github.com/mono/SkiaSharp/pull/3056">#3056</a>)</li>
-<li><strong>libjpeg-turbo updated to 2.1.5.1+</strong> — JPEG codec updated with latest commits. (<a href="https://github.com/mono/SkiaSharp/pull/3060">#3060</a>)</li>
-<li><strong>HarfBuzz updated to 8.3.1</strong> — Text shaping engine updated with minor fixes. (<a href="https://github.com/mono/SkiaSharp/pull/3052">#3052</a>)</li>
+<li><strong>libexpat updated to 2.6.4</strong> — Picks up upstream security fixes. (<a href="https://github.com/mono/SkiaSharp/pull/3056">#3056</a>)</li>
+<li><strong>freetype2 updated to 2.13.3+</strong> — Latest stable with security and rendering fixes. (<a href="https://github.com/mono/SkiaSharp/pull/3061">#3061</a>)</li>
+<li><strong>libjpeg-turbo updated to 2.1.5.1+</strong> — Latest maintenance commits. (<a href="https://github.com/mono/SkiaSharp/pull/3060">#3060</a>)</li>
+<li><strong>HarfBuzz updated to 8.3.1</strong> — Text shaping engine update. (<a href="https://github.com/mono/SkiaSharp/pull/3052">#3052</a>)</li>
 </ul>
 <h2 id="bug-fixes">Bug Fixes</h2>
 <ul>
-<li><strong>Fixed .NET 9 ASP.NET Blazor issues</strong> — Resolved compatibility issues with .NET 9 Blazor applications. (<a href="https://github.com/mono/SkiaSharp/pull/3064">#3064</a>)</li>
-<li><strong>Blazor WASM module loading fix</strong> — Moved the Blazor workaround into the WASM layer and fixed the import for apps with a base path. (<a href="https://github.com/mono/SkiaSharp/pull/3082">#3082</a>, <a href="https://github.com/mono/SkiaSharp/pull/3088">#3088</a>, <a href="https://github.com/mono/SkiaSharp/pull/3092">#3092</a>)</li>
-<li><strong>Android NDK updated to r27c with 16KB alignment</strong> — Updated the Android NDK and enabled 16KB page alignment for Android 15+ compatibility. (<a href="https://github.com/mono/SkiaSharp/pull/3099">#3099</a>)</li>
-<li><strong>Corrected NuGet PackagePath attribute</strong> — Fixed the <code>PackagePath</code> attribute in NuGet packaging. (<a href="https://github.com/mono/SkiaSharp/pull/3101">#3101</a>)</li>
+<li><strong>Fixed .NET 9 Blazor compatibility</strong> — Resolved issues with ASP.NET Blazor on .NET 9. (<a href="https://github.com/mono/SkiaSharp/pull/3064">#3064</a>)</li>
+<li><strong>Fixed Blazor base path imports</strong> — Apps with a custom base path now load correctly. (<a href="https://github.com/mono/SkiaSharp/pull/3092">#3092</a>)</li>
+<li><strong>Moved WASM workaround into SkiaSharp</strong> — Blazor-specific fix relocated for broader compatibility. (<a href="https://github.com/mono/SkiaSharp/pull/3082">#3082</a>, <a href="https://github.com/mono/SkiaSharp/pull/3088">#3088</a>)</li>
 </ul>
 <h2 id="platform-support">Platform Support</h2>
 <table>
@@ -132,19 +128,15 @@
 <tbody>
 <tr>
 <td>🍎 Apple</td>
-<td>Metal GRBackendRenderTarget on all platforms</td>
-</tr>
-<tr>
-<td>🪟 Windows</td>
-<td>SDK version packaging fix</td>
-</tr>
-<tr>
-<td>🤖 Android</td>
-<td>NDK r27c with 16KB page alignment</td>
+<td>Metal API for <code>GRBackendRenderTarget</code> on all Apple platforms</td>
 </tr>
 <tr>
 <td>🌐 WebAssembly</td>
 <td>.NET 9 Blazor fixes, base path import fix</td>
+</tr>
+<tr>
+<td>🤖 Android</td>
+<td>NDK updated to r27c with 16KB page alignment</td>
 </tr>
 </tbody>
 </table>
@@ -159,7 +151,7 @@
 <tbody>
 <tr>
 <td><a href="https://github.com/spouliot">@spouliot</a></td>
-<td>Added Metal API for GRBackendRenderTarget to all platforms</td>
+<td>Added Metal API for <code>GRBackendRenderTarget</code> on all Apple platforms</td>
 </tr>
 </tbody>
 </table>
@@ -167,15 +159,14 @@
 <ul>
 <li><a href="https://github.com/mono/SkiaSharp/compare/v3.116.0-preview.6.1...v3.118.0-preview.2.3">Full Changelog</a></li>
 <li><a href="https://www.nuget.org/packages/SkiaSharp/3.118.0-preview.2.3">NuGet Package</a></li>
-<li><a href="https://github.com/mono/SkiaSharp/tree/main/changelogs/SkiaSharp/3.118.0">API Diff</a></li>
 </ul>
 <hr>
 <h2 id="preview-2-december-5-2024">Preview 2 (December 5, 2024)</h2>
-<p>Updated native dependencies (FreeType, libexpat, libjpeg-turbo), added Metal GRBackendRenderTarget APIs to all platforms, fixed .NET 9 Blazor issues, and added Android 16KB page alignment.</p>
+<p>Dependency updates (libexpat, freetype, libjpeg-turbo), Metal API on all Apple platforms, .NET 9 Blazor fixes, and Android NDK r27c update.</p>
 <p><a href="https://github.com/mono/SkiaSharp/compare/v3.118.0-preview.1.2...v3.118.0-preview.2.3">Full Changelog</a></p>
 <hr>
 <h2 id="preview-1-november-6-2024">Preview 1 (November 6, 2024)</h2>
-<p>Updated Skia engine to milestones 117 and 118, and updated HarfBuzz to 8.3.1.</p>
+<p>Initial preview with Skia m117 and m118 engine updates, plus HarfBuzz 8.3.1.</p>
 <p><a href="https://github.com/mono/SkiaSharp/compare/v3.116.0-preview.6.1...v3.118.0-preview.1.2">Full Changelog</a></p>
 
 </article>
@@ -198,7 +189,7 @@
     <footer class="border-top text-secondary">
       <div class="container-xxl">
         <div class="flex-fill">
-          PR #3763 · mattleibow/website-release-notes · e86e8fa
+          PR #3763 · mattleibow/website-release-notes · 3d94789
         </div>
       </div>
     </footer>
