@@ -7,6 +7,22 @@ body {
 }
 
 /* ============================================
+   Responsive column layout (unscoped — media queries
+   don't work in Blazor scoped CSS)
+   ============================================ */
+
+@media (max-width: 680px) {
+    .skeleton-grid { column-count: 1 !important; }
+    .gallery-shell { padding: 0 1rem !important; }
+}
+@media (min-width: 681px) and (max-width: 995px) {
+    .skeleton-grid { column-count: 2 !important; }
+}
+@media (min-width: 996px) {
+    .skeleton-grid { column-count: 3 !important; }
+}
+
+/* ============================================
    Dark mode
    ============================================ */
 

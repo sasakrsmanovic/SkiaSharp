@@ -1,126 +1,80 @@
-// masonry.js — JS-driven column layout for the Gallery home page
-// Distributes .grid-item elements into columns, NEW items first at top of each column.
+// Gallery masonry — JS creates flex columns and distributes cards.
+// CSS column-count can't guarantee NEW-at-top-per-column because
+// it balances heights unpredictably. So we create column divs.
 
-export function initMasonry(containerSelector) {
-    const container = document.querySelector(containerSelector);
-    if (!container) return null;
+let lastCols = 0;
 
-    let currentCols = 0;
+export function reveal(gridSelector, skeletonSelector) {
+    layout(gridSelector);
+    document.querySelector(skeletonSelector)?.remove();
+    const grid = document.querySelector(gridSelector);
+    if (grid) grid.style.opacity = '1';
 
-    function layout() {
-        const cols = getColCount();
-        if (cols === currentCols && container.querySelector('.masonry-col')) return;
-        currentCols = cols;
-        doLayout(container, cols);
-    }
-
-    // Initial layout, then reveal
-    layout();
-    container.style.opacity = '1';
-
-    // Hide skeleton
-    const skeleton = document.querySelector('.skeleton-grid');
-    if (skeleton) skeleton.style.display = 'none';
-
-    // Only re-layout when column count changes
+    // Re-layout when column count breakpoint changes
     window.addEventListener('resize', () => {
         const cols = getColCount();
-        if (cols !== currentCols) {
-            currentCols = cols;
-            doLayout(container, cols);
-        }
+        if (cols !== lastCols) layout(gridSelector);
     });
-
-    return null;
 }
 
-// Call from Blazor after filter/search re-renders
-export function relayout(containerSelector) {
-    const container = document.querySelector(containerSelector);
-    if (!container) return;
-
-    // Fade out existing items
-    const allItems = container.querySelectorAll('.grid-item');
-    allItems.forEach(el => el.classList.add('fading-out'));
-
-    // After fade-out transition, rearrange and fade back in
-    setTimeout(() => {
-        const cols = getColCount();
-        doLayout(container, cols);
-
-        // Fade in with stagger
-        const items = container.querySelectorAll('.grid-item');
-        items.forEach((el, i) => {
-            el.style.transitionDelay = (i * 20) + 'ms';
-            // Force reflow before removing class
-            void el.offsetHeight;
-            el.classList.remove('fading-out');
-        });
-
-        // Clean up transition delays after animation
-        setTimeout(() => {
-            items.forEach(el => el.style.transitionDelay = '');
-        }, items.length * 20 + 350);
-    }, 250);
+export function reorder(gridSelector) {
+    layout(gridSelector);
 }
 
 function getColCount() {
-    const container = document.querySelector('#masonry-container');
-    const w = container ? container.clientWidth : window.innerWidth;
-    if (w < 640) return 1;
-    if (w < 900) return 2;
-    if (w < 1300) return 3;
-    return 4;
+    const w = window.innerWidth;
+    if (w <= 680) return 1;
+    if (w <= 995) return 2;
+    return 3;
 }
 
-function doLayout(container, cols) {
-    const gap = 16;
+function layout(gridSelector) {
+    const grid = document.querySelector(gridSelector);
+    if (!grid) return;
 
-    // Pull all grid-items out of any existing column wrappers
-    const existingCols = container.querySelectorAll('.masonry-col');
-    existingCols.forEach(col => {
-        while (col.firstChild) container.appendChild(col.firstChild);
-        col.remove();
+    const cols = getColCount();
+    lastCols = cols;
+
+    // Collect all .grid-item (may be inside column divs or direct children)
+    const items = [];
+    grid.querySelectorAll('.grid-item').forEach(el => items.push(el));
+
+    // Remove existing column divs
+    grid.querySelectorAll('.mc').forEach(c => {
+        while (c.firstChild) grid.appendChild(c.firstChild);
+        c.remove();
     });
 
-    const items = Array.from(container.querySelectorAll(':scope > .grid-item'));
     if (items.length === 0) return;
 
-    // Split into NEW and rest
     const newItems = items.filter(el => el.dataset.isNew === 'true');
-    const restItems = items.filter(el => el.dataset.isNew !== 'true');
+    const rest = items.filter(el => el.dataset.isNew !== 'true');
 
-    // Style container
-    container.style.display = 'flex';
-    container.style.gap = gap + 'px';
-    container.style.alignItems = 'flex-start';
+    // Create column containers
+    grid.style.display = 'flex';
+    grid.style.gap = '1rem';
+    grid.style.alignItems = 'flex-start';
 
-    // Create columns
-    const columns = [];
+    const colEls = [];
     for (let i = 0; i < cols; i++) {
         const col = document.createElement('div');
-        col.className = 'masonry-col';
-        col.style.flex = '1';
-        col.style.display = 'flex';
-        col.style.flexDirection = 'column';
-        col.style.gap = gap + 'px';
-        col.style.minWidth = '0';
-        columns.push(col);
-        container.appendChild(col);
+        col.className = 'mc';
+        col.style.cssText = 'flex:1;display:flex;flex-direction:column;gap:1rem;min-width:0';
+        colEls.push(col);
+        grid.appendChild(col);
     }
 
-    // NEW items round-robin
-    newItems.forEach((item, i) => columns[i % cols].appendChild(item));
+    // 1) Distribute NEW items: one per column, round-robin
+    newItems.forEach((el, i) => colEls[i % cols].appendChild(el));
 
-    // Rest items to shortest column
-    restItems.forEach(item => {
+    // 2) Distribute rest items: shortest column first
+    rest.forEach(el => {
         let shortest = 0;
-        let minH = columns[0].offsetHeight;
+        let minH = colEls[0].offsetHeight;
         for (let c = 1; c < cols; c++) {
-            const h = columns[c].offsetHeight;
+            const h = colEls[c].offsetHeight;
             if (h < minH) { minH = h; shortest = c; }
         }
-        columns[shortest].appendChild(item);
+        colEls[shortest].appendChild(el);
     });
 }
-
