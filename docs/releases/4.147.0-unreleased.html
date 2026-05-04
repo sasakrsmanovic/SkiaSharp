@@ -86,40 +86,53 @@
 
         <article data-uid="">
 <h1 id="version-41470">Version 4.147.0</h1>
-<!-- Generated: 2026-05-04T21:36:37Z by claude-sonnet-4.6 -->
+<!-- Generated: 2026-05-04T22:33:57Z by claude-sonnet-4.6 -->
 <!--
   version: 4.147.0
   status:  unreleased
   branch:  main
   diff:    release/4.147.0-preview.1..main
-  prs:     21
+  prs:     23
 -->
 
 <blockquote>
 <p><strong>Upcoming release</strong> · In development · Not yet available on NuGet</p>
 </blockquote>
 <h2 id="highlights">Highlights</h2>
-<p>This release brings a significantly improved interactive Gallery with five new samples and a redesigned Blazor home page, alongside UX improvements to the SkiaFiddle sample from the community. It also introduces automated tooling for release notes and AI-powered Skia analysis, and fixes Apple platform TFM targeting. Community contributors <a href="https://github.com/ramezgerges">@ramezgerges</a> drove multiple user-facing improvements across the Uno and Skia Fiddle samples.</p>
+<p>This release brings an expanded interactive Gallery with 5 new Blazor samples and a redesigned home page, plus significant UX improvements to SkiaFiddle from community contributor <a href="https://github.com/ramezgerges">@ramezgerges</a>. Apple platform TFM handling is corrected so library projects and app projects receive the right target frameworks. The Uno sample ecosystem is also kept up to date, courtesy of <a href="https://github.com/ramezgerges">@ramezgerges</a>.</p>
 <h2 id="breaking-changes">Breaking Changes</h2>
 <p><em>None in this release.</em></p>
 <h2 id="new-features">New Features</h2>
-<h3 id="gallery--samples">Gallery &amp; Samples</h3>
+<h3 id="samples--gallery">Samples &amp; Gallery</h3>
 <ul>
-<li><strong>5 new interactive Gallery samples</strong> — Adds five new interactive samples to the Blazor Gallery app and redesigns the home page for a better first impression. (<a href="https://github.com/mono/SkiaSharp/pull/3757">#3757</a>)</li>
-<li><strong>SkiaFiddle UX improvements</strong> — Polishes the SkiaFiddle sample with improved layout and interaction. ❤️ <a href="https://github.com/ramezgerges">@ramezgerges</a> (<a href="https://github.com/mono/SkiaSharp/pull/3790">#3790</a>)</li>
-<li><strong>Uno Gallery Skottie fix</strong> — Fixes a <code>NU1605</code> package downgrade warning for Skottie in the Uno gallery project. ❤️ <a href="https://github.com/ramezgerges">@ramezgerges</a> (<a href="https://github.com/mono/SkiaSharp/pull/3785">#3785</a>)</li>
-<li><strong>Uno Basic sample updated</strong> — Bumps the Basic Uno sample to <code>Uno.Sdk/6.6.0-dev.208</code>. ❤️ <a href="https://github.com/ramezgerges">@ramezgerges</a> (<a href="https://github.com/mono/SkiaSharp/pull/3821">#3821</a>)</li>
-</ul>
-<h3 id="documentation">Documentation</h3>
-<ul>
-<li><strong>Improved docs landing page</strong> — Refreshes the layout and hero section of the documentation site. (<a href="https://github.com/mono/SkiaSharp/pull/3794">#3794</a>)</li>
+<li><strong>5 new interactive Gallery samples</strong> — Adds five new hands-on demos to the Blazor Gallery and redesigns the home page for a better first-run experience. (<a href="https://github.com/mono/SkiaSharp/pull/3757">#3757</a>)</li>
+<li><strong>SkiaFiddle UX improvements</strong> — Numerous usability enhancements to the SkiaFiddle playground. ❤️ <a href="https://github.com/ramezgerges">@ramezgerges</a> (<a href="https://github.com/mono/SkiaSharp/pull/3790">#3790</a>)</li>
+<li><strong>Uno sample updated to Uno.Sdk 6.6.0</strong> — Keeps the Basic Uno sample on the latest Uno SDK pre-release. ❤️ <a href="https://github.com/ramezgerges">@ramezgerges</a> (<a href="https://github.com/mono/SkiaSharp/pull/3821">#3821</a>)</li>
 </ul>
 <h2 id="bug-fixes">Bug Fixes</h2>
 <ul>
-<li><strong>Apple platform TFM fix</strong> — Corrects Apple platform TFMs to use versioned targets (e.g. <code>26.0</code>) for libraries and unversioned targets for apps, matching Apple toolchain requirements. (<a href="https://github.com/mono/SkiaSharp/pull/3798">#3798</a>)</li>
-<li><strong>HarfBuzzSharp version bump</strong> — Updates HarfBuzzSharp to <code>8.3.1.6</code> following its release. (<a href="https://github.com/mono/SkiaSharp/pull/3780">#3780</a>)</li>
+<li><strong>Apple platform TFM correction</strong> — Libraries now use versioned TFMs (e.g. <code>net9.0-ios26.0</code>) while app-head projects use the unversioned form, matching Apple's requirements for the upcoming OS releases. (<a href="https://github.com/mono/SkiaSharp/pull/3798">#3798</a>)</li>
+<li><strong>Uno Gallery Skottie package downgrade</strong> — Fixes a NU1605 package downgrade warning in the Skottie sample inside the Uno gallery. ❤️ <a href="https://github.com/ramezgerges">@ramezgerges</a> (<a href="https://github.com/mono/SkiaSharp/pull/3785">#3785</a>)</li>
 </ul>
-<p>Plus several CI, tooling, and workflow improvements.</p>
+<h2 id="platform-support">Platform Support</h2>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>What's New</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🍎 Apple</td>
+<td>Corrected TFM handling for library vs. app targets</td>
+</tr>
+<tr>
+<td>📦 General</td>
+<td>HarfBuzzSharp bumped to 8.3.1.6</td>
+</tr>
+</tbody>
+</table>
 <h2 id="community-contributors-">Community Contributors ❤️</h2>
 <table>
 <thead>
@@ -131,7 +144,7 @@
 <tbody>
 <tr>
 <td><a href="https://github.com/ramezgerges">@ramezgerges</a></td>
-<td>SkiaFiddle UX improvements, Uno gallery fixes, Uno SDK bump</td>
+<td>SkiaFiddle UX improvements, Uno sample update, Skottie fix</td>
 </tr>
 </tbody>
 </table>
@@ -156,7 +169,7 @@
     <footer class="border-top text-secondary">
       <div class="container-xxl">
         <div class="flex-fill">
-          main · main · 44695fa
+          main · main · 1303808
         </div>
       </div>
     </footer>
