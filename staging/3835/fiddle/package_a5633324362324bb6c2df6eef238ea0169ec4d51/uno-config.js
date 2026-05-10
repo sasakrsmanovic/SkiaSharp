@@ -1,7 +1,7 @@
 let config = {};
 config.uno_remote_managedpath = "_framework";
 config.uno_app_base = "/SkiaSharp/staging/3835/fiddle/package_a5633324362324bb6c2df6eef238ea0169ec4d51";
-config.dotnet_js_filename = "dotnet.ig8jyezmbk.js";
+config.dotnet_js_filename = "dotnet.vs5050tgoq.js";
 config.uno_dependencies = ["/SkiaSharp/staging/3835/fiddle/package_a5633324362324bb6c2df6eef238ea0169ec4d51/uno-monaco-helpers.js", "/SkiaSharp/staging/3835/fiddle/package_a5633324362324bb6c2df6eef238ea0169ec4d51/Uno.Runtime.Wasm.js", "/SkiaSharp/staging/3835/fiddle/package_a5633324362324bb6c2df6eef238ea0169ec4d51/setImmediate.js", "/SkiaSharp/staging/3835/fiddle/package_a5633324362324bb6c2df6eef238ea0169ec4d51/Uno.Wasm.js", "/SkiaSharp/staging/3835/fiddle/package_a5633324362324bb6c2df6eef238ea0169ec4d51/MonacoFocusGuard.js", "/SkiaSharp/staging/3835/fiddle/package_a5633324362324bb6c2df6eef238ea0169ec4d51/AppManifest.js"];
 config.uno_runtime_options = [];
 config.enable_pwa = false;
