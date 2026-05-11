@@ -86,22 +86,28 @@
 
         <article data-uid="">
 <h1 id="version-41470">Version 4.147.0</h1>
+<!-- Generated: 2026-05-06T22:44:12Z by claude-sonnet-4.6 -->
+<!--
+  version: 4.147.0
+  status:  unreleased
+  branch:  main
+  diff:    release/4.147.0-preview.2..main
+  prs:     2
+
+- Fix SkiaSharp references for Uno Platform's Gallery sample by @ramezgerges in https://github.com/mono/SkiaSharp/pull/3867 [community ✨] (1 commit, 1 day)
+- Keep raw PR data in release notes files as HTML comment by @mattleibow in https://github.com/mono/SkiaSharp/pull/3877 (1 commit, 1 day)
+-->
 
 <blockquote>
 <p><strong>Upcoming release</strong> · In development · Not yet available on NuGet</p>
 </blockquote>
 <h2 id="highlights">Highlights</h2>
-<p>Community contributor <a href="https://github.com/ramezgerges">@ramezgerges</a> delivered UX improvements to the SkiaFiddle sample app and fixed a Skottie package downgrade issue in the Uno gallery. This work builds on the 4.147.0 Preview 1 foundation.</p>
+<p>Minor fixes landing on <code>main</code> since preview 2, including a correction to SkiaSharp package references in the Uno Platform Gallery sample contributed by <a href="https://github.com/ramezgerges">@ramezgerges</a>.</p>
 <h2 id="breaking-changes">Breaking Changes</h2>
 <p><em>None in this release.</em></p>
-<h2 id="new-features">New Features</h2>
-<h3 id="samples">Samples</h3>
-<ul>
-<li><strong>SkiaFiddle UX improvements</strong> — Adds a Monaco editor focus guard for WebAssembly, updates the page layout, and enhances the code-behind logic for a smoother editing experience. ❤️ <a href="https://github.com/ramezgerges">@ramezgerges</a> (<a href="https://github.com/mono/SkiaSharp/pull/3790">#3790</a>)</li>
-</ul>
 <h2 id="bug-fixes">Bug Fixes</h2>
 <ul>
-<li><strong>Fixed Skottie package downgrade NU1605 in Uno gallery</strong> — Pins SkiaSharp.Skottie in the Uno sample project to prevent a version conflict caused by <code>Uno.WinUI.Lottie</code> pulling in an older 3.x dependency. Also updates native asset include targets for HarfBuzzSharp and SkiaSharp. ❤️ <a href="https://github.com/ramezgerges">@ramezgerges</a> (<a href="https://github.com/mono/SkiaSharp/pull/3785">#3785</a>)</li>
+<li><strong>Uno Platform Gallery sample references</strong> — Fixed incorrect SkiaSharp package references in the Uno Platform Gallery sample project. ❤️ <a href="https://github.com/ramezgerges">@ramezgerges</a> (<a href="https://github.com/mono/SkiaSharp/pull/3867">#3867</a>)</li>
 </ul>
 <h2 id="community-contributors-">Community Contributors ❤️</h2>
 <table>
@@ -114,7 +120,7 @@
 <tbody>
 <tr>
 <td><a href="https://github.com/ramezgerges">@ramezgerges</a></td>
-<td>SkiaFiddle UX improvements, fixed Skottie package downgrade in Uno gallery</td>
+<td>Fixed SkiaSharp references in the Uno Platform Gallery sample</td>
 </tr>
 </tbody>
 </table>
@@ -139,7 +145,7 @@
     <footer class="border-top text-secondary">
       <div class="container-xxl">
         <div class="flex-fill">
-          PR #3752 · mattleibow/dev-warn-as-error-binding · c905de4
+          PR #3752 · mattleibow/dev-warn-as-error-binding · 1a5bb14
         </div>
       </div>
     </footer>
